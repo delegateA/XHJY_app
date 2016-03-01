@@ -14,6 +14,6 @@ typedef void (^GxqRightBlock)();
 @property (nonatomic,copy)GxqLeftBlock leftBlock;
 @property (nonatomic,copy)GxqRightBlock rightBlock;
 
-+ (void)showWithIMage:(NSString *)image noticeTitle:(NSString *)noticeTitle noticelMessage:(NSString *)message buttonNum:(NSInteger)num buttonTitle:(NSString *)buttonTitle buttonColor:(UIColor *)color LeftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock;
++ (void)showWithIMage:(NSString *)image noticeTitle:(NSString *)noticeTitle noticelMessage:(NSString *)message buttonNum:(NSInteger)num buttonTitles:(NSArray *)buttonTitles buttonColors:(NSArray *)colors LeftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock;
 
 @end

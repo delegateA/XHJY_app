@@ -40,6 +40,7 @@
 		48BEC0E81C843AEF000EFEBD /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BEC0E61C843AEF000EFEBD /* TableViewCell.m */; };
 		48BEC0E91C843AEF000EFEBD /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48BEC0E71C843AEF000EFEBD /* TableViewCell.xib */; };
 		48BEC0F31C853037000EFEBD /* GxqAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BEC0F21C853037000EFEBD /* GxqAlertView.m */; };
+		48BEC0F61C853489000EFEBD /* ManagePersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BEC0F51C853489000EFEBD /* ManagePersonViewController.m */; };
 		6AA4518F504E219CA4A7FA55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F38E1B54882967C42AC960 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		48BEC0E71C843AEF000EFEBD /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		48BEC0F11C853037000EFEBD /* GxqAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GxqAlertView.h; sourceTree = "<group>"; };
 		48BEC0F21C853037000EFEBD /* GxqAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GxqAlertView.m; sourceTree = "<group>"; };
+		48BEC0F41C853489000EFEBD /* ManagePersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagePersonViewController.h; sourceTree = "<group>"; };
+		48BEC0F51C853489000EFEBD /* ManagePersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagePersonViewController.m; sourceTree = "<group>"; };
 		76F38E1B54882967C42AC960 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B93434FBB54D506C974C4D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F8EF7217284D0E35AB034681 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 		484779821C83EE570060B3C9 /* management */ = {
 			isa = PBXGroup;
 			children = (
+				48BEC0F41C853489000EFEBD /* ManagePersonViewController.h */,
+				48BEC0F51C853489000EFEBD /* ManagePersonViewController.m */,
 				48BEC0E21C8439DE000EFEBD /* SetViewController.h */,
 				48BEC0E31C8439DE000EFEBD /* SetViewController.m */,
 				48BEC0DF1C8435B9000EFEBD /* BaseViewController.h */,
@@ -553,6 +558,7 @@
 				48BEC0E11C8435B9000EFEBD /* BaseViewController.m in Sources */,
 				4847797C1C83EB990060B3C9 /* Tools.m in Sources */,
 				4802CCEF1C7D9D1F00E0F3DB /* AppDelegate.m in Sources */,
+				48BEC0F61C853489000EFEBD /* ManagePersonViewController.m in Sources */,
 				4847797D1C83EB990060B3C9 /* tabBarButton.m in Sources */,
 				48BEC0CA1C841A83000EFEBD /* ManageBtn.m in Sources */,
 				484779891C83F1AC0060B3C9 /* ManagerViewController.m in Sources */,

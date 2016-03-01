@@ -11,7 +11,7 @@
 #define screenW  [UIScreen mainScreen].bounds.size.width
 @implementation GxqAlertView
 
-+ (void)showWithIMage:(NSString *)image noticeTitle:(NSString *)noticeTitle noticelMessage:(NSString *)message buttonNum:(NSInteger)num buttonTitle:(NSString *)buttonTitle buttonColor:(UIColor *)color LeftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock
++ (void)showWithIMage:(NSString *)image noticeTitle:(NSString *)noticeTitle noticelMessage:(NSString *)message buttonNum:(NSInteger)num buttonTitles:(NSArray *)buttonTitles buttonColors:(NSArray *)colors LeftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     GxqAlertView *selfView = [[self alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -19,7 +19,7 @@
     //selfView.alpha = 0.2;
     [keyWindow addSubview:selfView];
     
-    [selfView contentViewWithImageName:image withBigNoticeString:noticeTitle withSmallNoticeString:message withNumofBtn:num withBtnString:buttonTitle withBtnColor:color leftBlock:leftBlock RightBlock:rightBlock];
+    [selfView contentViewWithImageName:image withBigNoticeString:noticeTitle withSmallNoticeString:message withNumofBtn:num withBtnString:buttonTitles withBtnColor:colors leftBlock:leftBlock RightBlock:rightBlock];
 }
 
 + (void)dismiss
@@ -27,7 +27,7 @@
     
 }
 
-- (void)contentViewWithImageName:(NSString *)name withBigNoticeString:(NSString *)noticeLabel withSmallNoticeString:(NSString *)smallNoticel withNumofBtn:(NSInteger)num withBtnString:(NSString *)btnString withBtnColor:(UIColor *)color leftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock
+- (void)contentViewWithImageName:(NSString *)name withBigNoticeString:(NSString *)noticeLabel withSmallNoticeString:(NSString *)smallNoticel withNumofBtn:(NSInteger)num withBtnString:(NSArray *)btnStrings withBtnColor:(NSArray *)colors leftBlock:(GxqLeftBlock)leftBlock RightBlock:(GxqRightBlock)rightBlock
 {
     self.leftBlock = leftBlock;
     self.rightBlock = rightBlock;
@@ -91,10 +91,10 @@
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(0, (alertViewH - 60)*percent, alertViewW, 60 * percent);
-        [btn setTitle:btnString forState:UIControlStateNormal];
+        [btn setTitle:btnStrings[0] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:20 * percent]];
-        [btn setBackgroundColor:color];
+        [btn setBackgroundColor:colors[0]];
         [btn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [alertView addSubview:btn];
         
@@ -107,7 +107,7 @@
         [sureBtn setBackgroundImage:[UIImage imageNamed:@"icon_sure"] forState:UIControlStateNormal];
         [sureBtn setTitleColor:[UIColor colorWithRed:0.19 green:0.62 blue:0.78 alpha:1] forState:UIControlStateNormal];
         sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        [sureBtn setBackgroundColor:[Tools colorWithHexString:[Singleton sharedInstance].mutableCopy withAlpha:1]];
+        [sureBtn setBackgroundColor:colors[1]];
         [alertView addSubview:sureBtn];
         
         
@@ -115,7 +115,7 @@
         cancelBtn.frame = CGRectMake(0, (alertViewH - 60)*percent, alertView.frame.size.width * 0.5, 60 * percent);
         [sureBtn setBackgroundImage:[UIImage imageNamed:@"icon_close"] forState:UIControlStateNormal];
         [cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        cancelBtn.backgroundColor = [UIColor grayColor];
+        [cancelBtn setBackgroundColor:colors[0]];
         [alertView addSubview:cancelBtn];
 
     }
@@ -136,18 +136,6 @@
 {
     self.leftBlock();
     [self closeView];
-}
-
-- (void)btnChange:(UIButton *)btn
-{
-    _seconds--;
-    //    [_leftBtn setTitle:[NSString stringWithFormat:@"取消(%zds)",_seconds] forState:UIControlStateNormal];
-    _timeLabel.text = [NSString stringWithFormat:@"(%zd%@)",_seconds,@"s"];
-    if (_seconds == 0) {
-        [_timer invalidate];
-        [self closeView];
-        self.leftBlock();
-  }
 }
 
 
