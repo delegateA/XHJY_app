@@ -1,5 +1,5 @@
 //
-//  ManagerViewController.h
+//  ManageBtn.h
 //  XHJY_app
 //
 //  Created by LiangXiaobin on 16/2/29.
@@ -8,5 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManagerViewController : UIViewController
+@interface ManageBtn : UIButton
+
+@property(strong,nonatomic)UIImageView *buttonImg;
+@property(strong,nonatomic)UILabel *buttonName;
 @end
