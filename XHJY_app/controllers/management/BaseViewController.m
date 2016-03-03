@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
     topView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
@@ -46,6 +47,34 @@
     self.topTittle.textAlignment = NSTextAlignmentCenter;
     self.topTittle.textColor = [UIColor whiteColor];
     [self.view addSubview:self.topTittle];
+    
+    
+    self.addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.addBtn.frame = CGRectMake(SCREEN_WIDTH - 10 - 22, 20 + 11, 22, 22);
+    [self.addBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addBtn.hidden = YES;
+    [self.addBtn setBackgroundImage:ImageNamed(@"btn_add_normal") forState:UIControlStateNormal];
+    [self.addBtn setBackgroundImage:ImageNamed(@"btn_add_press") forState:UIControlStateNormal];
+    [self.view addSubview:self.addBtn];
+    
+    
+    self.rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.rightBtn.frame = CGRectMake(SCREEN_WIDTH - 70, 20 + 11, 60, 22);
+    [self.rightBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:self.rightBtn];
+    self.rightBtn.hidden = YES;
+    
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)rightBtnClicked:(UIButton *)sender
+{
     
 }
 

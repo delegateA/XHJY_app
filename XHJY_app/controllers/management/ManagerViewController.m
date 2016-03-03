@@ -9,6 +9,11 @@
 #import "ManagerViewController.h"
 #import "ManageBtn.h"
 #import "SetViewController.h"
+#import "ManagerFilesViewController.h"
+#import "EquipmentManagerViewController.h"
+#import "PersonInfoViewController.h"
+#import "MessageListViewController.h"
+#import "ManagePersonViewController.h"
 
 @interface ManagerViewController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
 @property(nonatomic,copy)UIButton *setBtn;
@@ -224,12 +229,18 @@
    {
        if (sender.tag == 10) {
            
+           ManagePersonViewController *vc = [[ManagePersonViewController alloc]init];
+           [self.navigationController pushViewController:vc animated:YES];
        }
        if (sender.tag == 11) {
            
+           ManagerFilesViewController *vc = [[ManagerFilesViewController alloc]init];
+           [self.navigationController pushViewController:vc animated:YES];
        }
        if (sender.tag == 12) {
            
+           EquipmentManagerViewController *vc = [[EquipmentManagerViewController alloc]init];
+           [self.navigationController pushViewController:vc animated:YES];
        }
        if (sender.tag == 13) {
            
@@ -246,12 +257,14 @@
 
 - (void)pushToMessage
 {
-    
+    MessageListViewController *vc = [[MessageListViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)pushToPersonInfo
 {
-    
+    PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

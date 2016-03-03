@@ -12,4 +12,7 @@
 @property(nonatomic,retain)UIButton *backBtn;
 @property(nonatomic,retain)UIButton *closeBtn;
 @property(nonatomic,retain)UILabel *topTittle;
+@property(nonatomic,retain)UIButton *addBtn;
+@property(nonatomic,retain)UIButton *rightBtn;
+- (void)rightBtnClicked:(UIButton *)sender;
 @end

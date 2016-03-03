@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeEquipmentViewController">
+            <connections>
+                <outlet property="bottomBtn" destination="k85-6g-xKc" id="0OP-wW-cOb"/>
+                <outlet property="epMessage" destination="bc4-eD-biG" id="6AQ-hf-DgH"/>
+                <outlet property="epTittle" destination="Qgy-7C-1q9" id="WZt-1o-SGS"/>
+                <outlet property="tableView" destination="P48-E6-Xxn" id="qnf-lO-d5j"/>
+                <outlet property="topView" destination="QOH-WU-LtT" id="QvZ-Xh-GD2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOH-WU-LtT">
+                    <rect key="frame" x="0.0" y="64" width="600" height="145"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgy-7C-1q9">
+                            <rect key="frame" x="0.0" y="36" width="600" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="iR1-pQ-O8V"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc4-eD-biG">
+                            <rect key="frame" x="0.0" y="74" width="600" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="K3A-Jh-MeB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Qgy-7C-1q9" firstAttribute="leading" secondItem="QOH-WU-LtT" secondAttribute="leading" id="04b-HE-rvC"/>
+                        <constraint firstItem="bc4-eD-biG" firstAttribute="top" secondItem="Qgy-7C-1q9" secondAttribute="bottom" constant="18" id="8GC-Vz-YZo"/>
+                        <constraint firstAttribute="height" constant="145" id="A93-PE-ogL"/>
+                        <constraint firstAttribute="trailing" secondItem="bc4-eD-biG" secondAttribute="trailing" id="Ivz-dk-azJ"/>
+                        <constraint firstItem="bc4-eD-biG" firstAttribute="leading" secondItem="QOH-WU-LtT" secondAttribute="leading" id="iZw-Tq-7bl"/>
+                        <constraint firstAttribute="trailing" secondItem="Qgy-7C-1q9" secondAttribute="trailing" id="nkT-Ip-0FM"/>
+                        <constraint firstItem="Qgy-7C-1q9" firstAttribute="top" secondItem="QOH-WU-LtT" secondAttribute="top" constant="36" id="pF0-7M-CW6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k85-6g-xKc">
+                    <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="D5N-27-qwj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="确 认 更 换">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="changeEquiment:" destination="-1" eventType="touchUpInside" id="w5K-IB-ux8"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P48-E6-Xxn">
+                    <rect key="frame" x="0.0" y="209" width="600" height="331"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5nE-q9-DIp"/>
+                        <outlet property="delegate" destination="-1" id="zxN-OP-VNX"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="k85-6g-xKc" secondAttribute="bottom" id="1DQ-rR-67l"/>
+                <constraint firstItem="QOH-WU-LtT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="9E0-MC-8Yc"/>
+                <constraint firstItem="QOH-WU-LtT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="F3v-9t-EGQ"/>
+                <constraint firstItem="P48-E6-Xxn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="209" id="FT1-dr-Bgi"/>
+                <constraint firstItem="P48-E6-Xxn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uog-TY-Irw"/>
+                <constraint firstAttribute="trailing" secondItem="k85-6g-xKc" secondAttribute="trailing" id="XpE-g6-cDV"/>
+                <constraint firstAttribute="trailing" secondItem="QOH-WU-LtT" secondAttribute="trailing" id="ZVk-cr-mc3"/>
+                <constraint firstItem="k85-6g-xKc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gL7-0f-2RL"/>
+                <constraint firstAttribute="trailing" secondItem="P48-E6-Xxn" secondAttribute="trailing" id="qeg-ra-dAB"/>
+                <constraint firstItem="k85-6g-xKc" firstAttribute="top" secondItem="P48-E6-Xxn" secondAttribute="bottom" id="rSc-sP-Pgz"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
