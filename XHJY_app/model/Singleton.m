@@ -16,6 +16,7 @@
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[Singleton alloc] init];
         _sharedInstance.mainColor = @"#00D9C4";
+        _sharedInstance.lineColor = @"#F5F5F5";
         
     });
     

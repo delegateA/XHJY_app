@@ -15,8 +15,8 @@
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     GxqAlertView *selfView = [[self alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    selfView.backgroundColor = [UIColor colorWithRed:0.50 green:0.50 blue:0.50 alpha:1];
-    //selfView.alpha = 0.2;
+    selfView.backgroundColor = [Tools colorWithHexString:@"#000000" withAlpha:0.5];
+//    selfView.alpha = 0.2;
     [keyWindow addSubview:selfView];
     
     [selfView contentViewWithImageName:image withBigNoticeString:noticeTitle withSmallNoticeString:message withNumofBtn:num withBtnString:buttonTitles withBtnColor:colors leftBlock:leftBlock RightBlock:rightBlock];
@@ -45,7 +45,8 @@
     }];
     
     alertView.frame = CGRectMake((screenW - alertViewW) * 0.5, (screenH - alertViewH) * 0.5, alertViewW, alertViewH);
-    alertView.backgroundColor = [UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1];
+    alertView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:alertView];
     
     if (noticeLabel.length > 0) {
         
@@ -60,12 +61,14 @@
         bigLabel.text = noticeLabel;
         bigLabel.font = [UIFont systemFontOfSize:20];
         bigLabel.textColor = [UIColor blackColor];
+        bigLabel.textAlignment = NSTextAlignmentCenter;
         [alertView addSubview:bigLabel];
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 215  * percent, alertViewW, 10 * percent)];
         label.text = smallNoticel;
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor lightGrayColor];
+        label.textAlignment = NSTextAlignmentCenter;
         [alertView addSubview:label];
     }
     else
@@ -76,13 +79,13 @@
         imageView.image = [UIImage imageNamed:name];
         [alertView addSubview:imageView];
     
-        [alertView addSubview:alertView];
         
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 180  * percent, alertViewW, 90 * percent)];
         label.text = smallNoticel;
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor lightGrayColor];
+        label.textAlignment = NSTextAlignmentCenter;
         [alertView addSubview:label];
         
     }
@@ -101,22 +104,37 @@
     }
     if (num == 2) {
         
-        UIButton *sureBtn = [UIButton new];
+        
+        UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelBtn.frame = CGRectMake(0, (alertViewH - 60)*percent, alertView.frame.size.width * 0.5, 60 * percent);
+//        [cancelBtn setBackgroundImage:ImageNamed(btnStrings[0]) forState:UIControlStateNormal];
+        [cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [cancelBtn setBackgroundColor:colors[0]];
+        [alertView addSubview:cancelBtn];
+        
+        UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         sureBtn.frame = CGRectMake(alertView.frame.size.width/2 ,  (alertViewH - 60)*percent,alertView.frame.size.width / 2, 60 * percent);
         [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [sureBtn setBackgroundImage:[UIImage imageNamed:@"icon_sure"] forState:UIControlStateNormal];
+//        [sureBtn setBackgroundImage:ImageNamed(btnStrings[1]) forState:UIControlStateNormal];
         [sureBtn setTitleColor:[UIColor colorWithRed:0.19 green:0.62 blue:0.78 alpha:1] forState:UIControlStateNormal];
         sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [sureBtn setBackgroundColor:colors[1]];
         [alertView addSubview:sureBtn];
         
         
-        UIButton *cancelBtn = [UIButton new];
-        cancelBtn.frame = CGRectMake(0, (alertViewH - 60)*percent, alertView.frame.size.width * 0.5, 60 * percent);
-        [sureBtn setBackgroundImage:[UIImage imageNamed:@"icon_close"] forState:UIControlStateNormal];
-        [cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [cancelBtn setBackgroundColor:colors[0]];
-        [alertView addSubview:cancelBtn];
+        
+        UIImageView *imageView1 = [[UIImageView alloc]init];
+        imageView1.center = cancelBtn.center;
+        imageView1.bounds = CGRectMake(0, 0, 25, 25);
+        imageView1.image = ImageNamed(btnStrings[0]);
+        [alertView addSubview:imageView1];
+        
+        
+        UIImageView *imageView2 = [[UIImageView alloc]init];
+        imageView2.center = sureBtn.center;
+        imageView2.bounds = CGRectMake(0, 0, 25, 25);
+        imageView2.image = ImageNamed(btnStrings[1]);
+        [alertView addSubview:imageView2];
 
     }
     

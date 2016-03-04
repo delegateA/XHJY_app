@@ -10,6 +10,7 @@
 
 @interface Singleton : NSObject
 @property (nonatomic,copy) NSString *mainColor;
+@property (nonatomic,copy) NSString *lineColor;
 
 + (Singleton *)sharedInstance;
 

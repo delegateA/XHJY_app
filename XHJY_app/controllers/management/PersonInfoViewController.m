@@ -7,13 +7,26 @@
 //
 
 #import "PersonInfoViewController.h"
+#import "EWMViewController.h"
 
 @interface PersonInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,copy)UIButton *setImageBtn;
-@property(nonatomic,copy)UIView *mainView;
+@property(nonatomic,copy)UIScrollView *mainView;
+@property(nonatomic,copy)NSArray *array;
+@property(nonatomic,copy)UIView *midView;
+@property (nonatomic,copy)UIButton *nextBtn;
 @end
 
 @implementation PersonInfoViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _array = [[NSArray alloc]initWithObjects:@"姓名",@"性别",@"年龄",@"身高",@"体重",@"血型", nil];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +35,10 @@
     self.mainView.hidden = NO;
     self.closeBtn.hidden = NO;
     self.topTittle.text = @"个人资料";
+    self.midView.hidden= NO;
+    self.nextBtn.hidden = NO;
+    
+   
 }
 - (UIButton *)setImageBtn
 {
@@ -41,19 +58,71 @@
     return _setImageBtn;
 }
 
-- (UIView *)mainView
+
+- (UIView *)midView
+{
+    if (!_midView) {
+        
+        _midView = [[UIView alloc]initWithFrame:CGRectMake(0, 64 + 100 + 50, 0, 40)];
+        _midView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_midView];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, 100, 40)];
+        label.textColor = [UIColor grayColor];
+        label.text = @"我的二维码";
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = [UIFont systemFontOfSize:16];
+        [_midView addSubview:label];
+        
+        for (int i = 0; i < 2; i++) {
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 1  + 38 * i, SCREEN_WIDTH, 1)];
+            view.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
+            [_midView addSubview:view];
+        }
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH
+                                                                              - 20 -22, (40 - 22) / 2, 22, 22)];
+        imageView.backgroundColor = [UIColor blackColor];
+        [_midView addSubview:imageView];
+        
+    }
+
+    return _midView;
+}
+
+
+- (UIButton *)nextBtn
+{
+    if (!_nextBtn) {
+        
+        _nextBtn =[UIButton buttonWithType:UIButtonTypeSystem];
+        _nextBtn.frame = CGRectMake(0, 64 + 100 + 50, SCREEN_WIDTH, 40);
+        [_nextBtn addTarget:self action:@selector(pushToEWM:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_nextBtn];
+    }
+    return _nextBtn;
+}
+
+- (void)pushToEWM:(UIButton *)sender
+{
+    EWMViewController *vc = [[EWMViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (UIScrollView *)mainView
 {
     if (!_mainView) {
         
-        _mainView = [[UIView alloc]initWithFrame:CGRectMake(0, 64 + 100 + 60, SCREEN_WIDTH, 80* 5)];
+        _mainView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64 + 100 + 50 + 40, SCREEN_WIDTH, SCREEN_HEIGHT - (64 + 100 + 50 + 40))];
         _mainView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_mainView];
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 20 + 75 * i, 100, 15)];
             label.textColor = [UIColor grayColor];
-            label.text = @"name";
+            label.text = self.array[i];
             label.textAlignment = NSTextAlignmentLeft;
             label.font = [UIFont systemFontOfSize:16];
             [_mainView addSubview:label];
@@ -67,10 +136,11 @@
             [_mainView addSubview:textfield];
             
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 74  + 75 * i, SCREEN_WIDTH, 1)];
-            view.backgroundColor = RGBCOLOR(245, 245, 245);
+            view.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
             [_mainView addSubview:view];
             
         }
+        _mainView.contentSize = CGSizeMake(SCREEN_WIDTH, 6 * 80);
     }
     
     return _mainView;

@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.lineView.backgroundColor = RGBCOLOR(245, 245, 245);
+    self.lineView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
     self.MessageLabel.textColor= [UIColor blackColor];
 }
 

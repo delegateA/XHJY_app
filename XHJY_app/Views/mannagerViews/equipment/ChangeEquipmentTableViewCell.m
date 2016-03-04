@@ -13,8 +13,8 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    self.leftView.backgroundColor = RGBCOLOR(248, 248, 248);
-    self.lineView.backgroundColor = RGBCOLOR(245, 245, 245);
+    self.leftView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
+    self.lineView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

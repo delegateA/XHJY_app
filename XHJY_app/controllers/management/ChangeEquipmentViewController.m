@@ -15,10 +15,21 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *epTittle;
 @property (weak, nonatomic) IBOutlet UILabel *epMessage;
+@property(nonatomic,copy)NSMutableArray *array;
 
 @end
 
 @implementation ChangeEquipmentViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _array = [[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,15 +69,26 @@
     [headerView addGestureRecognizer:tapGesture];
     
     self.tableView.tableHeaderView = headerView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"ChangeEquipmentTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ChangeEquipmentTableViewCell"];
     
     
 }
 
+/**
+ *  点击刷新
+ *
+ *  @param sender 
+ */
 - (void)actiondo:(UITapGestureRecognizer *)sender
 {
     
 }
+/**
+ *  更换设备
+ *
+ *  @param sender
+ */
 - (IBAction)changeEquiment:(id)sender {
     
 }
@@ -84,10 +106,16 @@
         cell = [[ChangeEquipmentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.messageLabel.text = @"老鼠爱大米";
-    if (indexPath.row == 1) {
-        cell.leftView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
-        cell.selectImage.image = ImageNamed(@"icon_sure");
+    if ([self.array containsObject:[NSNumber numberWithInteger:indexPath.row]]) {
+        
+       cell.selectImage.image = ImageNamed(@"icon_square_s.png");
     }
+    else
+    {
+       cell.selectImage.image = ImageNamed(@"icon_square_uns.png");
+    }
+    
+    
     
     return cell;
 }
@@ -97,7 +125,19 @@
     return 65;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([self.array containsObject:[NSNumber numberWithInteger:indexPath.row]]) {
+        
+        [self.array removeObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
+    else
+    {
+        [self.array addObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
+    [self.tableView reloadData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

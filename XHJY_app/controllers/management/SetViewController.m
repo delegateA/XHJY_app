@@ -8,6 +8,7 @@
 
 #import "SetViewController.h"
 #import "TableViewCell.h"
+#import "ChangeSecrectViewController.h"
 
 @interface SetViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,copy)UITableView *tableView;
@@ -91,6 +92,15 @@
     return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 1) {
+        ChangeSecrectViewController *vc = [[ChangeSecrectViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

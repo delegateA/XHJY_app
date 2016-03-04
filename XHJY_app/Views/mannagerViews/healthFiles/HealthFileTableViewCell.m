@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.verticalLine.backgroundColor = RGBACOLOR(245, 245, 245, 1);
-    self.horizontalLine.backgroundColor = RGBCOLOR(245, 245, 245);
+    self.verticalLine.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
+    self.horizontalLine.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
     self.circleView.layer.cornerRadius = 5;
     self.circleView.clipsToBounds = YES;
     self.circleView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];

@@ -90,7 +90,7 @@
             }
             
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 74  + 75 * i, SCREEN_WIDTH, 1)];
-            view.backgroundColor = RGBCOLOR(245, 245, 245);
+            view.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
             [_mainView addSubview:view];
         }
     }
@@ -338,6 +338,7 @@
                     textfield.text = self.selectString;
                     textfield.userInteractionEnabled = NO;
                 }
+                textfield.delegate = self;
                 UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 74  + 75 * i, SCREEN_WIDTH, 1)];
                 view.backgroundColor = RGBCOLOR(245, 245, 245);
                 [_mainView addSubview:view];
@@ -415,6 +416,47 @@
         self.selectView.alpha = 1;
     }];
 }
+
+
+- (void)resignKeyBoardInView:(UIView *)view
+{
+    for (UIView *v in view.subviews) {
+        if ([v.subviews count] > 0) {
+            [self resignKeyBoardInView:v];
+        }
+        if ([v isKindOfClass:[UITextView class]] || [v isKindOfClass:[UITextField class]]) {
+            [v resignFirstResponder];
+        }
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self resignKeyBoardInView:self.mainView];
+}
+
+
+
+#pragma mark---------------UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    BOOL flag = NO;
+    if (textField.tag == 34) {
+        /**
+         *  完成编辑的方法
+         */
+        
+    }
+    else
+    {
+        UITextField *text = [self.view viewWithTag:textField.tag + 1];
+        [text becomeFirstResponder];
+    }
+    
+    
+    return flag;
+}
+
 
 #pragma mark----------------UICollectionViewDelegate
 

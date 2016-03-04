@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.lineView.backgroundColor = RGBACOLOR(245, 245, 245, 1);
+    self.lineView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
     [self.messageTextField setBorderStyle:UITextBorderStyleNone];
     self.messageTextField.textColor = [UIColor grayColor];
 //    self.messageTextField.layer.borderColor = [UIColor whiteColor].CGColor;

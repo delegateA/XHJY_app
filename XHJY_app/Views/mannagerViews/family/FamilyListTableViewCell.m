@@ -17,7 +17,7 @@
     self.headIMage.clipsToBounds = YES;
     self.bigLabel.textColor = [Tools colorWithHexString:@"#b5b5b5" withAlpha:1];
     self.smallLabel.textColor = [Tools colorWithHexString:@"#b5b5b5" withAlpha:1];
-    self.line.backgroundColor = [Tools colorWithHexString:@"#f1f1f1" withAlpha:1];
+    self.line.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

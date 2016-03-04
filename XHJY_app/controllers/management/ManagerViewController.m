@@ -15,9 +15,10 @@
 #import "MessageListViewController.h"
 #import "ManagePersonViewController.h"
 
-@interface ManagerViewController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
+@interface ManagerViewController ()
+
 @property(nonatomic,copy)UIButton *setBtn;
-@property(nonatomic,copy)UIButton *setImageBtn;
+@property(nonatomic,copy)UIImageView *setImage;
 @property(nonatomic,copy)UILabel *nameLabel;
 @property(nonatomic,assign)CGFloat percent ;
 @property(nonatomic,copy)UIView *midView;
@@ -46,7 +47,7 @@
 {
     [self.nameLabel setText:@"kaish"];
     self.setBtn.enabled = YES;
-    self.setImageBtn.enabled = YES;
+    self.setImage.backgroundColor = [UIColor blackColor];
     [self.midView setBackgroundColor:[Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1]];
     [self.infoBtn setBackgroundColor:[UIColor whiteColor]];
     [self.messageBtn setBackgroundColor:[UIColor whiteColor]];
@@ -70,22 +71,20 @@
     return _setBtn;
 }
 
-- (UIButton *)setImageBtn
+- (UIImageView *)setImage
 {
-    if (!_setImageBtn) {
+    if (!_setImage) {
         
         CGFloat width = 100 * self.percent;
-        _setImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _setImageBtn.backgroundColor = [UIColor blackColor];
-        _setImageBtn.bounds = CGRectMake(0, 0, width, width);
-        _setImageBtn.center = CGPointMake(SCREEN_WIDTH / 2, (75 + 50) * self.percent);
-        _setImageBtn.layer.cornerRadius = width / 2;
-        _setImageBtn.clipsToBounds = YES;
-        [_setImageBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        _setImageBtn.tag = 14;
-        [self.view addSubview:_setImageBtn];
+        _setImage = [[UIImageView alloc]init];
+        _setImage.backgroundColor = [UIColor blackColor];
+        _setImage.bounds = CGRectMake(0, 0, width, width);
+        _setImage.center = CGPointMake(SCREEN_WIDTH / 2, (75 + 50) * self.percent);
+        _setImage.layer.cornerRadius = width / 2;
+        _setImage.clipsToBounds = YES;
+        [self.view addSubview:_setImage];
     }
-    return _setImageBtn;
+    return _setImage;
 }
 
 - (UILabel *)nameLabel
@@ -226,7 +225,7 @@
 
 
 - (void)buttonPressed:(UIButton *)sender
-   {
+{
        if (sender.tag == 10) {
            
            ManagePersonViewController *vc = [[ManagePersonViewController alloc]init];
@@ -247,13 +246,7 @@
            SetViewController *vc = [[SetViewController alloc]init];
            [self.navigationController pushViewController:vc animated:YES];
        }
-       if (sender.tag == 14) {
-           
-           UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"选择头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从相册选取", nil];
-           [sheet showInView:self.view];
-           
-       }
-   }
+}
 
 - (void)pushToMessage
 {
@@ -266,10 +259,6 @@
     PersonInfoViewController *vc = [[PersonInfoViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
-
-    
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -286,59 +275,8 @@
 }
 */
 
-#pragma mark--------------UIActionsheetDelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        
-        //拍照
-        
-        UIImagePickerController *vc = [[UIImagePickerController alloc]init];
-        vc.delegate = self;
-        vc.allowsEditing = YES;
-        vc.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:vc animated:YES completion:nil];
-        
-    }
-    
-    if (buttonIndex == 1) {
-        //从相册中选取
-        UIImagePickerController *vc = [[UIImagePickerController alloc]init];
-        vc.delegate = self;
-        vc.allowsEditing = YES;
-        vc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:vc animated:YES completion:nil];
-    }
-    
-}
 
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    UIImage *image = info[@"UIImagePickerControllerEditedImage"];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        [self.setImageBtn setImage:image forState:UIControlStateNormal];
-        // 保存图像
-        // 1. 取图像路径
-        NSArray *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *imagePath = [docs[0]stringByAppendingPathComponent:@"abc.png"];
-        
-        // 2. 转换成NSData保存
-        NSData *imageData = UIImagePNGRepresentation(image);
-        [imageData writeToFile:imagePath atomically:YES];
-    });
-    
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 

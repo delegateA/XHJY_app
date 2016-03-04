@@ -10,6 +10,8 @@
 #import "GxqAlertView.h"
 #import "HorizontalMenu.h"
 #import "FamilyListTableViewCell.h"
+#import "FocusOnViewController.h"
+#import "FoucusMeViewController.h"
 
 @interface ManagePersonViewController ()<HorizontalMenuDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,copy)UIView *topView;
@@ -69,9 +71,17 @@
         [_bottomBtn setTitle:@"邀 请 关 注" forState:UIControlStateNormal];
         [_bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_bottomBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        [_bottomBtn addTarget:self action:@selector(pushToAddPerson:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_bottomBtn];
     }
     return _bottomBtn;
+}
+
+- (void)pushToAddPerson:(UIButton *)sender
+{
+    FocusOnViewController *vc = [[FocusOnViewController alloc]init];
+    vc.btnType = self.index;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -79,8 +89,26 @@
 
 - (void)clieckButton:(UIButton *)button;
 {
-    self.index = button.tag;
-    [self.tableView reloadData];
+    if (self.index == button.tag) {
+        
+    }
+    else
+    {
+    
+        self.index = button.tag;
+        if (self.index == 0) {
+            [UIView animateWithDuration:0.5 animations:^{
+                [self.bottomBtn setTitle:@"申 请 关 注" forState:UIControlStateNormal];
+            }];
+        }
+        if (self.index == 1) {
+                [UIView animateWithDuration:0.5 animations:^{
+                    [self.bottomBtn setTitle:@"邀 请 关 注" forState:UIControlStateNormal];
+                }];
+        }
+        
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -105,7 +133,7 @@
         cell.bigLabel.hidden = YES;
         cell.smallLabel.hidden = NO;
         cell.typeIMage.hidden = NO;
-        cell.typeIMage.image = LOADIMAGE(@"icon_target_gr.png", @"");
+        cell.typeIMage.image = ImageNamed(@"icon_target_gr.png");//LOADIMAGE(@"icon_target_gr", @"png");
         cell.smallLabel.text = @"心电健康";
     }
     else
@@ -124,7 +152,14 @@
     return 99;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    FoucusMeViewController *vc = [[FoucusMeViewController alloc]init];
+    vc.btnType = self.index;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

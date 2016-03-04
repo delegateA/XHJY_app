@@ -12,7 +12,7 @@
 #import "EquipmentDataViewController.h"
 
 @interface EquipmentManagerViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (copy, nonatomic)UITableView *tableView;
 
 @end
 
@@ -24,9 +24,21 @@
     self.topTittle.text = @"设备管理";
     self.closeBtn.hidden = NO;
     self.addBtn.hidden = NO;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"EquipmentTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"EquipmentTableViewCell"];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.tableView reloadData];
+}
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerNib:[UINib nibWithNibName:@"EquipmentTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"EquipmentTableViewCell"];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [self.view addSubview:_tableView];
+    }
+    return _tableView;
 }
 
 - (void)didReceiveMemoryWarning {

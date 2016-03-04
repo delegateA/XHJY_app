@@ -65,7 +65,7 @@
     
     
     _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bounds.size.height - 1, SCREEN_WIDTH, 1)];
-    _lineView.backgroundColor = RGBACOLOR(245, 245, 245, 1);
+    _lineView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
     [self addSubview:_lineView];
 }
 
