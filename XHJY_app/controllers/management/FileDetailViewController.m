@@ -48,9 +48,12 @@
     self.rightBtn.hidden = NO;
     [self.rightBtn setTitle:@"编辑" forState:UIControlStateNormal];
     self.selectString = @"疾病";
+    
     self.scrollview.AutoScrollDelay = 3.0;
     self.editing = NO;
+    
     self.mainView.hidden = NO;
+    self.mainView.userInteractionEnabled = NO;
 }
 
 #pragma mark -------懒加载
@@ -259,6 +262,7 @@
         self.deleteBtn.hidden = NO;
         self.editOverBtn.hidden = NO;
         self.editing = YES;
+        self.mainView.userInteractionEnabled = YES;
     }];
 }
 
@@ -288,6 +292,7 @@
         self.rightBtn.hidden = NO;
         self.deleteBtn.hidden = YES;
         self.editOverBtn.hidden = YES;
+        self.mainView.userInteractionEnabled = NO;
         
     }];
 }
@@ -408,7 +413,11 @@
     }];
 }
 
-
+/**
+ *  展示选择框
+ *
+ *  @param sender
+ */
 - (void)selectViewShow:(UIButton *)sender
 {
     [UIView animateWithDuration:0.5 animations:^{
@@ -417,7 +426,11 @@
     }];
 }
 
-
+/**
+ *  关键盘
+ *
+ *  @param view
+ */
 - (void)resignKeyBoardInView:(UIView *)view
 {
     for (UIView *v in view.subviews) {

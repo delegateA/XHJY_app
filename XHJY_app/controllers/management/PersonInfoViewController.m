@@ -15,6 +15,7 @@
 @property(nonatomic,copy)NSArray *array;
 @property(nonatomic,copy)UIView *midView;
 @property (nonatomic,copy)UIButton *nextBtn;
+@property(nonatomic,assign)BOOL editing;
 @end
 
 @implementation PersonInfoViewController
@@ -24,6 +25,7 @@
     self = [super init];
     if (self) {
         _array = [[NSArray alloc]initWithObjects:@"姓名",@"性别",@"年龄",@"身高",@"体重",@"血型", nil];
+        _editing = NO;
     }
     return self;
 }
@@ -35,11 +37,31 @@
     self.mainView.hidden = NO;
     self.closeBtn.hidden = NO;
     self.topTittle.text = @"个人资料";
-    self.midView.hidden= NO;
+    self.midView.userInteractionEnabled = NO;
     self.nextBtn.hidden = NO;
-    
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setTitle:@"编辑" forState:UIControlStateNormal];
    
 }
+
+- (void)rightBtnClicked:(UIButton *)sender
+{
+    if (!_editing) {
+        
+        self.midView.userInteractionEnabled = YES;
+        self.editing = YES;
+        [self.rightBtn setTitle:@"完成" forState:UIControlStateNormal];
+    }
+    else
+    {
+        self.midView.userInteractionEnabled = NO;
+        self.editing = NO;
+        [self.rightBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    }
+    
+}
+
+
 - (UIButton *)setImageBtn
 {
     if (!_setImageBtn) {
