@@ -130,7 +130,9 @@
 		48F8588E1C89417E00375321 /* icon_square_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F858861C89417E00375321 /* icon_square_s@3x.png */; };
 		48F8588F1C89417E00375321 /* icon_square_uns@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F858871C89417E00375321 /* icon_square_uns@2x.png */; };
 		48F858901C89417E00375321 /* icon_square_uns@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F858881C89417E00375321 /* icon_square_uns@3x.png */; };
-		6AA4518F504E219CA4A7FA55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F38E1B54882967C42AC960 /* libPods.a */; };
+		48F858961C8D193500375321 /* AnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F858941C8D193500375321 /* AnalysisViewController.m */; };
+		48F858971C8D193500375321 /* AnalysisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F858951C8D193500375321 /* AnalysisViewController.xib */; };
+		9A495D55A4E67B71CD6C4A9E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AEDDD8BCA9D3382D3BC234 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +153,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05AEDDD8BCA9D3382D3BC234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4802CCE71C7D9D1F00E0F3DB /* XHJY_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHJY_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4802CCEB1C7D9D1F00E0F3DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4802CCED1C7D9D1F00E0F3DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -326,7 +329,9 @@
 		48F858861C89417E00375321 /* icon_square_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_square_s@3x.png"; sourceTree = "<group>"; };
 		48F858871C89417E00375321 /* icon_square_uns@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_square_uns@2x.png"; sourceTree = "<group>"; };
 		48F858881C89417E00375321 /* icon_square_uns@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_square_uns@3x.png"; sourceTree = "<group>"; };
-		76F38E1B54882967C42AC960 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		48F858931C8D193500375321 /* AnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisViewController.h; sourceTree = "<group>"; };
+		48F858941C8D193500375321 /* AnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisViewController.m; sourceTree = "<group>"; };
+		48F858951C8D193500375321 /* AnalysisViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalysisViewController.xib; sourceTree = "<group>"; };
 		F5B93434FBB54D506C974C4D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F8EF7217284D0E35AB034681 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -337,7 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48F858711C88187400375321 /* Contacts.framework in Frameworks */,
-				6AA4518F504E219CA4A7FA55 /* libPods.a in Frameworks */,
+				9A495D55A4E67B71CD6C4A9E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +484,9 @@
 		484779811C83EE570060B3C9 /* follow */ = {
 			isa = PBXGroup;
 			children = (
+				48F858931C8D193500375321 /* AnalysisViewController.h */,
+				48F858941C8D193500375321 /* AnalysisViewController.m */,
+				48F858951C8D193500375321 /* AnalysisViewController.xib */,
 			);
 			path = follow;
 			sourceTree = "<group>";
@@ -785,7 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				48F858701C88187400375321 /* Contacts.framework */,
-				76F38E1B54882967C42AC960 /* libPods.a */,
+				05AEDDD8BCA9D3382D3BC234 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -946,6 +954,7 @@
 				484779A61C83F27D0060B3C9 /* icon_-groups@3x.png in Resources */,
 				48BEC1591C867B11000EFEBD /* EquipmentMessageTableViewCell.xib in Resources */,
 				48BEC1931C86A20D000EFEBD /* dot@3x.png in Resources */,
+				48F858971C8D193500375321 /* AnalysisViewController.xib in Resources */,
 				48F858401C87D3A700375321 /* icon_refresh@3x.png in Resources */,
 				48F8583F1C87D3A700375321 /* icon_refresh@2x.png in Resources */,
 				48BEC1901C86A20D000EFEBD /* btn_close_s_press@2x.png in Resources */,
@@ -1081,6 +1090,7 @@
 				484779891C83F1AC0060B3C9 /* ManagerViewController.m in Sources */,
 				48BEC1671C869CE8000EFEBD /* EquipmentDataViewController.m in Sources */,
 				484779861C83EF410060B3C9 /* Singleton.m in Sources */,
+				48F858961C8D193500375321 /* AnalysisViewController.m in Sources */,
 				48F8584D1C87D4A800375321 /* HorizontalMenu.m in Sources */,
 				48BEC0E41C8439DE000EFEBD /* SetViewController.m in Sources */,
 				48BEC1451C859753000EFEBD /* EquipmentTableViewCell.m in Sources */,
@@ -1162,6 +1172,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1181,6 +1192,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = XHJY_app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1206,6 +1218,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1218,6 +1231,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = XHJY_app;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1236,7 +1250,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XHJY.XHJY-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "XHJY_app/controllers/management/XHJY_app-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "XHJY_app/XHJY_app-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1253,7 +1267,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "XHJY.XHJY-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "XHJY_app/controllers/management/XHJY_app-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "XHJY_app/XHJY_app-Bridging-Header.h";
 			};
 			name = Release;
 		};

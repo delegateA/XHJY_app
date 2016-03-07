@@ -14,7 +14,7 @@
 #import "FoucusMeViewController.h"
 
 @interface ManagePersonViewController ()<HorizontalMenuDelegate,UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,copy)UIView *topView;
+@property(nonatomic,copy)UIView *headerView;
 @property(nonatomic,copy)UITableView *tableView;
 @property(nonatomic,copy)UIButton *bottomBtn;
 @property(nonatomic,assign)NSInteger index;
@@ -27,25 +27,25 @@
     // Do any additional setup after loading the view.
     self.topTittle.text = @"家人";
     self.closeBtn.hidden = NO;
-    self.topView.hidden = NO;
+    self.headerView.hidden = NO;
     self.bottomBtn.hidden = NO;
     self.index = 0;
     [self.tableView reloadData];
 }
 
-- (UIView *)topView
+- (UIView *)headerView
 {
-    if (!_topView) {
-        _topView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 61)];
-        _topView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
-        [self.view addSubview:_topView];
+    if (!_headerView) {
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 61)];
+        _headerView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
+        [self.view addSubview:_headerView];
         
         HorizontalMenu *menu = [[HorizontalMenu alloc]initWithFrame:CGRectMake(0, 17, SCREEN_WIDTH, 44) withTitles:@[@"我关注的",@"关注我的"]];
         menu.delegate = self;
-        [_topView addSubview:menu];
+        [_headerView addSubview:menu];
         
     }
-    return _topView;
+    return _headerView;
 }
 
 - (UITableView *)tableView

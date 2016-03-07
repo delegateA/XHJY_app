@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseViewController : UIViewController
+@property(nonatomic,retain)UIView *topView;
 @property(nonatomic,retain)UIButton *backBtn;
 @property(nonatomic,retain)UIButton *closeBtn;
 @property(nonatomic,retain)UILabel *topTittle;
