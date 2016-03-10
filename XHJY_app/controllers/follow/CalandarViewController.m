@@ -65,6 +65,14 @@
         _calendarPicker.calendarBlock = ^(NSInteger day, NSInteger month, NSInteger year){
             
             NSLog(@"%li-%li-%li", year,(long)month,(long)day);
+            
+            NSString *str = [[NSString alloc]initWithFormat:@"%li-%li-%li",year,(long)month,(long)day];
+            
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setObject:@"day" forKey:@"type"];
+            [dic setObject:str forKey:@"time"];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"selectDay" object:nil userInfo:dic];
         };
         
     }
@@ -79,6 +87,15 @@
         _yearView.calendarBlock = ^(NSInteger month, NSInteger year){
             
             NSLog(@"%li-%li", (long)year,(long)month);
+       
+            
+            NSString *str = [[NSString alloc]initWithFormat:@"%li-%li",year,(long)month];
+            
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+            [dic setObject:@"day" forKey:@"type"];
+            [dic setObject:str forKey:@"time"];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"selectMonth" object:nil userInfo:dic];
         };
         _yearView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_yearView];

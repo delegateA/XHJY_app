@@ -39,6 +39,7 @@
 @property(nonatomic,copy)PieView *pieCHartView;
 @property(nonatomic,copy)BottomView *bottomView;
 @property(nonatomic,copy)SuperChartView *superChartView;
+@property(nonatomic,assign)NSInteger selectType;
 @end
 
 @implementation AnalysisViewController
@@ -46,6 +47,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.selectType = 0;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadDay:) name:@"selectDay" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadMonth:) name:@"selectMonth" object:nil];
+    
+    
     [self setUIinterface];
 }
 
@@ -84,6 +92,57 @@
     pc.label.text = @"总能量消耗:25000KCal";
     
     
+    
+    
+    [self lineData];
+    [self BarData];
+    [self setCombinedData];
+    [self setPieData];
+//    [self setSuperBarData];
+    
+}
+
+- (void)loadDay:(id)sender
+{
+    if (self.selectType == 0) {
+        
+    }
+    else
+    {
+        self.chartView.hidden = NO;
+        self.combinedChartView.hidden = NO;
+        self.superChartView.hidden = YES;
+    
+        self.pieCHartView.frame = CGRectMake(self.pieCHartView.frame.origin.x, self.pieCHartView.frame.origin.y + 290 + 35, SCREEN_WIDTH, self.pieCHartView.frame.size.height);
+        self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.bottomView.frame.origin.y + 290 + 35, SCREEN_WIDTH, self.bottomView.frame.size.height);
+        self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.scrollView.contentSize.height + 290 + 35);
+    }
+    self.selectType = 0;
+}
+
+- (void)loadMonth:(id)sender
+{
+    if (self.selectType == 1) {
+        
+    }
+    else
+    {
+        self.chartView.hidden = YES;
+        self.combinedChartView.hidden = YES;
+        self.superChartView.hidden = NO;
+        [self setSuperBarData];
+        self.pieCHartView.frame = CGRectMake(self.pieCHartView.frame.origin.x, self.pieCHartView.frame.origin.y - 290 - 35, SCREEN_WIDTH, self.pieCHartView.frame.size.height);
+        self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.bottomView.frame.origin.y - 290 - 35, SCREEN_WIDTH, self.bottomView.frame.size.height);
+        self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.scrollView.contentSize.height - 290 -35);
+    }
+    self.selectType = 1;
+}
+
+/**
+ *  lineData
+ */
+- (void)lineData
+{
     //************************线***************************//
     int count = 24;
     double range = 150;
@@ -147,14 +206,23 @@
     for (id<ILineChartDataSet> set in _lineChartView.lineChartView.data.dataSets)
     {
         set.drawFilledEnabled = YES;
-   
+        
         set.drawCirclesEnabled = NO;
-    
+        
         set.drawValuesEnabled = NO;
-    
+        
         set.drawCubicEnabled = YES;
     }
-//*****************************Bar***************************************************************//
+}
+
+
+/**
+ *  barData
+ */
+- (void)BarData
+{
+    
+    //*****************************Bar***************************************************************//
     
     NSMutableArray *xbVals = [[NSMutableArray alloc] init];
     int bcount = 24;
@@ -177,7 +245,7 @@
         
         [ybVals addObject:[[BarChartDataEntry alloc] initWithValues:@[@(val1), @(val2)] xIndex:i]];
     }
-    
+
     BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:ybVals label:@""];
     set.colors = @[[Tools colorWithHexString:@"#ff3566" withAlpha:1],[Tools colorWithHexString:@"#ffca53" withAlpha:1]];
     set.stackLabels = @[@"告警",@"事件"];
@@ -187,8 +255,8 @@
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.maximumFractionDigits = 1;
-//    formatter.negativeSuffix = @" $";
-//    formatter.positiveSuffix = @" $";
+    //    formatter.negativeSuffix = @" $";
+    //    formatter.positiveSuffix = @" $";
     
     BarChartData *bdata = [[BarChartData alloc] initWithXVals:xbVals dataSets:dataSet];
     [bdata setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:7.f]];
@@ -199,6 +267,17 @@
     {
         set.drawValuesEnabled = NO;
     }
+
+}
+
+
+
+
+/**
+ *  comBined
+ */
+- (void)setCombinedData
+{
     //****************************Comboned*************************************\\
     
     int ccount = 24;
@@ -215,7 +294,7 @@
     
     for (int i = 0; i < ccount / 2; i++)
     {
-        double mult = crange / 10.0;
+        double mult = crange / 20.0;
         double val = (double) (arc4random_uniform(mult) + 5);
         [cyVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
@@ -233,14 +312,14 @@
     
     NSMutableArray *cyVals2 = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < ccount; i++)
     {
-        double mult = crange / 10;
+        double mult = crange / 2;
         double val = (double) (arc4random_uniform(mult) / 2) + 5;
         [cyVals2 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-    LineChartDataSet *cset2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"资源积累"];
+    LineChartDataSet *cset2 = [[LineChartDataSet alloc] initWithYVals:cyVals2 label:@"资源积累"];
     cset2.axisDependency = AxisDependencyLeft;
     [cset2 setColor:[UIColor blackColor]];
     [cset2 setCircleColor:UIColor.whiteColor];
@@ -270,19 +349,26 @@
         
         set.drawCubicEnabled = YES;
     }
-    
+}
+
+/**
+ *  pie
+ */
+
+- (void)setPieData
+{
     //*******************************Pie********************************************//
     
-   
+    
     
     NSArray *parties = @[
-                @"Party A", @"Party B", @"Party C", @"Party D", @"Party E", @"Party F",
-                @"Party G", @"Party H", @"Party I", @"Party J", @"Party K", @"Party L",
-                @"Party M", @"Party N", @"Party O", @"Party P", @"Party Q", @"Party R",
-                @"Party S", @"Party T", @"Party U", @"Party V", @"Party W", @"Party X",
-                @"Party Y", @"Party Z"
-                ];
-
+                         @"Party A", @"Party B", @"Party C", @"Party D", @"Party E", @"Party F",
+                         @"Party G", @"Party H", @"Party I", @"Party J", @"Party K", @"Party L",
+                         @"Party M", @"Party N", @"Party O", @"Party P", @"Party Q", @"Party R",
+                         @"Party S", @"Party T", @"Party U", @"Party V", @"Party W", @"Party X",
+                         @"Party Y", @"Party Z"
+                         ];
+    
     
     double mult = 8;
     
@@ -302,7 +388,7 @@
     }
     
     PieChartDataSet *pdataSet = [[PieChartDataSet alloc] initWithYVals:yVals1 label:@"Election Results"];
-
+    
     pdataSet.sliceSpace = 2.0;
     
     // add a lot of colors
@@ -317,7 +403,7 @@
     
     pdataSet.colors = colors;
     
-    PieChartData *pdata = [[PieChartData alloc] initWithXVals:xVals dataSet:pdataSet];
+    PieChartData *pdata = [[PieChartData alloc] initWithXVals:pxVals dataSet:pdataSet];
     NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
     pFormatter.numberStyle = NSNumberFormatterPercentStyle;
     pFormatter.maximumFractionDigits = 1;
@@ -332,11 +418,10 @@
     
     
     self.bottomView.hidden = NO;
-    
-    [self setSuperBarData];
-    
 }
-
+/**
+ *  月资源数据
+ */
 
 - (void)setSuperBarData
 {

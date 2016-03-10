@@ -49,14 +49,18 @@
 - (void)loadViewWithNumber:(NSInteger)num
 {
     self.numberView.frame = CGRectMake(1, 1, 22 * num / 100, 8);
-    if (num >= 80) {
+    if (num >= 65) {
         
-        self.numberView.backgroundColor = [UIColor whiteColor];
+        self.numberView.backgroundColor = [UIColor greenColor];
+    }
+    else if(num >= 30)
+    {
+        self.numberView.backgroundColor = [UIColor orangeColor];
+        
     }
     else
     {
         self.numberView.backgroundColor = [UIColor redColor];
-        
     }
 }
 

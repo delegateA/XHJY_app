@@ -247,12 +247,12 @@ NSString *const SZCalendarCellIdentifier = @"cell";
 
 - (void)show
 {
-    self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^(void) {
-        self.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL isFinished) {
+//    self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
+//    [UIView animateWithDuration:0.5 animations:^(void) {
+//        self.transform = CGAffineTransformIdentity;
+//    } completion:^(BOOL isFinished) {
         [self customInterface];
-    }];
+//    }];
 }
 
 - (void)hide
