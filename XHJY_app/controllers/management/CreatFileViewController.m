@@ -70,8 +70,10 @@
                 textfield.userInteractionEnabled = NO;
             
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                button.frame = CGRectMake(SCREEN_WIDTH - 40 - 22, 50, 22, 22);
-                [button setBackgroundColor:[UIColor blackColor]];
+                button.frame = CGRectMake(SCREEN_WIDTH - 40 - 22, 50, 18, 10);
+                button.backgroundColor = [UIColor blackColor];
+                [button setBackgroundImage:ImageNamed(@"btn_b_normal") forState:UIControlStateNormal];
+                [button setBackgroundImage:ImageNamed(@"btn_b_presss") forState:UIControlStateHighlighted];
                 button.tag = 99;
                 [button addTarget:self action:@selector(selectViewShow:) forControlEvents:UIControlEventTouchUpInside];
                 [_mainView addSubview:button];

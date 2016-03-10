@@ -32,7 +32,6 @@
 @interface HorizontalMenu()
 {
     RemoveBtnHighlighted *_tmpBtn;
-    UIView *_selectLine;
 }
 @end
 

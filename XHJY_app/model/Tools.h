@@ -11,4 +11,5 @@
 @interface Tools : NSObject
 + (UIColor *) colorWithHexString: (NSString *)color withAlpha:(double)alpha;
 +(CGFloat) heightForString:(NSString *)value andWidth:(float)width;
++(CGFloat) widthForString:(NSString *)value andHei:(float)hei;
 @end

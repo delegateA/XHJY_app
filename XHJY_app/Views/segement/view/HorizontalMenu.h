@@ -31,6 +31,7 @@
 
 
 @property (nonatomic, strong) UIButton *button;
+@property (nonatomic,copy) UIView *selectLine;
 
 /**
  *  初始化toolbar

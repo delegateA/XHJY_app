@@ -20,9 +20,9 @@
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
-    self.topView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
-    [self.view addSubview:self.topView];
+    self.baseView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    self.baseView.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
+    [self.view addSubview:self.baseView];
     
     self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.backBtn.frame = CGRectMake(10, 20 + 11, 22, 22);
