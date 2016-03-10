@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVO-wF-aWX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVO-wF-aWX">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Item 2-->
         <scene sceneID="hgC-f6-ISk">
             <objects>
-                <viewController id="Uam-Pa-aSw" customClass="AnalysisViewController" sceneMemberID="viewController">
+                <viewController id="Uam-Pa-aSw" customClass="NoFollowViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yNE-SX-0bf"/>
                         <viewControllerLayoutGuide type="bottom" id="bEh-uf-Yyd"/>
@@ -27,7 +27,7 @@
         <!--Item 1-->
         <scene sceneID="HIF-IL-kre">
             <objects>
-                <viewController id="ygV-1u-OGr" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController id="ygV-1u-OGr" customClass="PlanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uj1-Md-6oM"/>
                         <viewControllerLayoutGuide type="bottom" id="kuY-aU-gFh"/>

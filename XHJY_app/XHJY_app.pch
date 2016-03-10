@@ -16,5 +16,8 @@
 #import "Masonry.h"
 #import "Tools.h"
 #import "Singleton.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MagicalRecord/MagicalRecord.h>
 #endif
 #endif /* XHJY_app_pch */

@@ -22,7 +22,7 @@
     //Enabling keyboard manager
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:15];
-    return YES;
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"MyDataBase.sqlite"];    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
