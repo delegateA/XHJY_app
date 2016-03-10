@@ -10,6 +10,7 @@
 #import "EquipmentTableViewCell.h"
 #import "EquipmentMessageViewController.h"
 #import "EquipmentDataViewController.h"
+#import "batteryImageView.h"
 
 @interface EquipmentManagerViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (copy, nonatomic)UITableView *tableView;
@@ -88,6 +89,7 @@
     }
     cell.nameLabel.text = @"心电设备";
     cell.messageBtn.tag = 100 + 10 * indexPath.section + indexPath.row;
+    [cell.statusImage loadViewWithNumber:100 - indexPath.row];
     cell.detailBtn.tag = 200 + 10 * indexPath.section + indexPath.row;
     [cell.messageBtn addTarget:self action:@selector(pushTomessage:) forControlEvents:UIControlEventTouchUpInside];
     [cell.detailBtn addTarget:self action:@selector(pushToDetail:) forControlEvents:UIControlEventTouchUpInside];

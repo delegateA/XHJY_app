@@ -32,11 +32,11 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-tg-qiB">
-                        <rect key="frame" x="306" y="28" width="30" height="10"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CUo-tg-qiB" customClass="batteryImageView">
+                        <rect key="frame" x="311" y="28" width="25" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="GKv-7B-1Yy"/>
-                            <constraint firstAttribute="width" constant="30" id="q0N-ZN-zgg"/>
+                            <constraint firstAttribute="width" constant="25" id="q0N-ZN-zgg"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwl-FR-C6O">

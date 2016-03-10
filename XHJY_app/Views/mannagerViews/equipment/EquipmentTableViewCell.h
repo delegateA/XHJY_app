@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "batteryImageView.h"
 
 @interface EquipmentTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *pointView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *statusImage;
+@property (weak, nonatomic) IBOutlet batteryImageView *statusImage;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *detailBtn;
 

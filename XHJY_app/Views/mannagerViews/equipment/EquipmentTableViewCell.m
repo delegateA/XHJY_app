@@ -29,6 +29,8 @@
     [self.detailBtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
     
     
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
