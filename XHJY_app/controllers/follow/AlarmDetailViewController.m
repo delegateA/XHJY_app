@@ -8,6 +8,7 @@
 
 #import "AlarmDetailViewController.h"
 #import "AlarmView.h"
+#import "lineChart.h"
 
 @interface AlarmDetailViewController()
 @property(nonatomic,copy)UIScrollView *scrollView;
@@ -105,7 +106,8 @@
             [scrollve addSubview:backView1];
             
             
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 20 + 200 * i, SCREEN_HEIGHT, 180)];
+            
+            lineChart *view = [[lineChart alloc]initWithFrame:CGRectMake(0, 20 + 200 * i + 10, SCREEN_HEIGHT, 160)];
             [scrollve addSubview:view];
             
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 0 + 200 * i, SCREEN_HEIGHT - 20, 20)];

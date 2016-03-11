@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "lineChart.h"
 
 @interface AlarmView : UIView
 @property(nonatomic,copy)UIImageView *typeView;//图标
@@ -19,4 +20,6 @@
 @property(nonatomic,copy)UIView *startView;//开始界面
 @property(nonatomic,copy)UIView *endView;//结束界面
 @property(nonatomic,copy)UIButton *btn;
+@property(nonatomic,copy)lineChart *startLine;
+@property(nonatomic,copy)lineChart *endLine;
 @end

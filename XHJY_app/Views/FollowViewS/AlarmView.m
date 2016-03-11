@@ -71,9 +71,19 @@
         [self addSubview:_btn];
         
         
+        
+        _startLine = [[lineChart alloc]initWithFrame:CGRectMake(0, 30 + 17 + 12 + 17 + 25 + 20 + 10, SCREEN_WIDTH, 160)];
+        [self addSubview:_startLine];
+        
+        
         UIView *redbView = [[UIView alloc]initWithFrame:CGRectMake(0, 30 + 17 + 12 + 17 + 25 + 20 + 180, SCREEN_WIDTH, 20)];
         redbView.backgroundColor = [Tools colorWithHexString:@"#ff2e63" withAlpha:1];
         [self addSubview:redbView];
+        
+        
+        
+        _endLine = [[lineChart alloc]initWithFrame:CGRectMake(0, 30 + 17 + 12 + 17 + 25 + 20 + 180 + 20 + 10 , SCREEN_WIDTH, 160)];
+        [self addSubview:_endLine];
 
         _endTime = [[UILabel alloc]initWithFrame:CGRectMake(15, 30 + 17 + 12 + 17 + 25 + 20 + 180, 150, 20)];
         _endTime.textColor = [UIColor whiteColor];
