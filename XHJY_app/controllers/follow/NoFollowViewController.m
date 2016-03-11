@@ -12,6 +12,8 @@
 #import "HavePersonDetailView.h"
 #import "CXSlideBar.h"
 #import "AnalysisViewController.h"
+#import  "FocusOnViewController.h"
+#import "AddIndicatorsMainViewController.h"
 
 @interface NoFollowViewController ()<CXSlideBarDelegate,HavePersonDetailViewDelegate>
 {
@@ -30,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
-    if (isHaveData==YES) {
+    if (isHaveData==NO) {
 //        [self createView1];
         [self setUpViews];
     }else{
@@ -254,10 +256,14 @@
 
 -(void)AddPerson:(UIButton *)sender{
     NSLog(@"添加关注的人");
+    FocusOnViewController *vc = [[FocusOnViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 -(void)ADDSelf:(UIButton *)sender{
     NSLog(@"添加自己的指标");
+    AddIndicatorsMainViewController *vc =[[ AddIndicatorsMainViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 -(void)showHeart{

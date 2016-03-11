@@ -1,21 +1,22 @@
 //
-//  InviteNewTypeViewController.m
+//  AddIndicatorsMainViewController.m
 //  XHJY_app
 //
-//  Created by LiangXiaobin on 16/3/3.
+//  Created by LiangXiaobin on 16/3/11.
 //  Copyright © 2016年 LiangXiaobin. All rights reserved.
 //
 
-#import "InviteNewTypeViewController.h"
+#import "AddIndicatorsMainViewController.h"
+#import "AddNewMachineViewController.h"
 
-@interface InviteNewTypeViewController ()
+@interface AddIndicatorsMainViewController ()
 @property(nonatomic,copy)UIScrollView *scrollView;
 @property(nonatomic,copy)NSArray *array;
 @property(nonatomic,copy)UIButton *bottomBtn;
 @property(nonatomic,assign)NSInteger type;
 @end
 
-@implementation InviteNewTypeViewController
+@implementation AddIndicatorsMainViewController
 
 - (instancetype)init
 {
@@ -26,16 +27,19 @@
     return self;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.backBtn.hidden = NO;
+    self.closeBtn.hidden = NO;
     self.midView.hidden = NO;
-    self.firstLabel.text = @"指标选择";
-    self.secondLabel.text = @"选择需要家人关注的新指标!";
+    self.firstLabel.text = @"添加指标";
+    self.secondLabel.text = @"请选择下列您想添加的指标";
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 80 * self.array.count);
-    [self.bottomBtn setTitle:@"邀  请" forState:UIControlStateNormal];
+    [self.bottomBtn setTitle:@"下 一 步" forState:UIControlStateNormal];
 }
+
+
 
 - (UIScrollView *)scrollView
 {
@@ -99,7 +103,7 @@
         
         _bottomBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _bottomBtn.frame = CGRectMake(0, SCREEN_HEIGHT - 60, SCREEN_WIDTH, 60);
-        [_bottomBtn setBackgroundColor:[Tools colorWithHexString:@"#ff3566" withAlpha:1]];
+        [_bottomBtn setBackgroundColor:[Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1]];
         [_bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_bottomBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [_bottomBtn addTarget:self action:@selector(inviteNewType:) forControlEvents:UIControlEventTouchUpInside];
@@ -123,8 +127,10 @@
 
 - (void)inviteNewType:(UIButton *)sender
 {
-    
+    AddNewMachineViewController *vc = [[AddNewMachineViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 
 - (void)didReceiveMemoryWarning {

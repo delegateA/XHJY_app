@@ -55,9 +55,8 @@
         imageView.image = [UIImage imageNamed:name];
         [alertView addSubview:imageView];
         
-        [alertView addSubview:alertView];
         
-        UILabel *bigLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 170 * percent, screenW, 25 * percent)];
+        UILabel *bigLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 170 * percent, alertViewW, 25 * percent)];
         bigLabel.text = noticeLabel;
         bigLabel.font = [UIFont systemFontOfSize:20];
         bigLabel.textColor = [UIColor blackColor];
@@ -107,22 +106,22 @@
         
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         cancelBtn.frame = CGRectMake(0, (alertViewH - 60)*percent, alertView.frame.size.width * 0.5, 60 * percent);
-//        [cancelBtn setBackgroundImage:ImageNamed(btnStrings[0]) forState:UIControlStateNormal];
         [cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [cancelBtn setBackgroundColor:colors[0]];
+        [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [alertView addSubview:cancelBtn];
         
         UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         sureBtn.frame = CGRectMake(alertView.frame.size.width/2 ,  (alertViewH - 60)*percent,alertView.frame.size.width / 2, 60 * percent);
         [sureBtn addTarget:self action:@selector(sureBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        [sureBtn setBackgroundImage:ImageNamed(btnStrings[1]) forState:UIControlStateNormal];
-        [sureBtn setTitleColor:[UIColor colorWithRed:0.19 green:0.62 blue:0.78 alpha:1] forState:UIControlStateNormal];
         sureBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [sureBtn setBackgroundColor:colors[1]];
+        [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [alertView addSubview:sureBtn];
         
         
-        
+        if ([btnStrings[0] hasSuffix: @"png"]) {
+
         UIImageView *imageView1 = [[UIImageView alloc]init];
         imageView1.center = cancelBtn.center;
         imageView1.bounds = CGRectMake(0, 0, 25, 25);
@@ -135,6 +134,12 @@
         imageView2.bounds = CGRectMake(0, 0, 25, 25);
         imageView2.image = ImageNamed(btnStrings[1]);
         [alertView addSubview:imageView2];
+        }
+        else
+        {
+            [cancelBtn setTitle:btnStrings[0] forState:UIControlStateNormal];
+            [sureBtn setTitle:btnStrings[1] forState:UIControlStateNormal];
+        }
 
     }
     

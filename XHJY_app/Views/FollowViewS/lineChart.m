@@ -122,10 +122,10 @@
     for (int i = 0 ; i < [horizontalArray count] - 1; i++) {
         //每一根横线粗线的y值
         NSInteger y = [[horizontalArray objectAtIndex:i] integerValue];
-        y += 2 + Xheight / 5;
+        y += 2 + (Xheight - 2) / 5;
         for (int i = 0; i < 4; i++) {
             CGContextMoveToPoint(context, 26 , y + Xheight / 5 * i);
-            CGContextAddLineToPoint(context, 26 + 31 * (Ynum - 1), y + Xheight / 5 * i);
+            CGContextAddLineToPoint(context, 26 + 31 * (Ynum - 1), y + (Xheight - 2) / 5 * i);
         }
     }
     

@@ -11,6 +11,7 @@
 #import "EquipmentMessageViewController.h"
 #import "EquipmentDataViewController.h"
 #import "batteryImageView.h"
+#import "AddIndicatorsMainViewController.h"
 
 @interface EquipmentManagerViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (copy, nonatomic)UITableView *tableView;
@@ -41,6 +42,13 @@
     }
     return _tableView;
 }
+
+- (void)rightBtnClicked:(UIButton *)sender
+{
+    AddIndicatorsMainViewController *vc = [[AddIndicatorsMainViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

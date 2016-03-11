@@ -203,6 +203,10 @@
 		48BEC1951C86A20D000EFEBD /* icon_diagnosis@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48BEC1811C86A20D000EFEBD /* icon_diagnosis@3x.png */; };
 		48BEC1961C86A20D000EFEBD /* icon_suspected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48BEC1821C86A20D000EFEBD /* icon_suspected@2x.png */; };
 		48BEC1971C86A20D000EFEBD /* icon_suspected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48BEC1831C86A20D000EFEBD /* icon_suspected@3x.png */; };
+		48CFE4511C927A7D00C5DF6A /* AddIndicatorsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CFE4501C927A7D00C5DF6A /* AddIndicatorsMainViewController.m */; };
+		48CFE4541C927C9000C5DF6A /* AddNewMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CFE4531C927C9000C5DF6A /* AddNewMachineViewController.m */; };
+		48CFE4571C9282F100C5DF6A /* InvitePersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CFE4561C9282F100C5DF6A /* InvitePersonViewController.m */; };
+		48CFE45A1C92834100C5DF6A /* InvitePersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CFE4591C92834100C5DF6A /* InvitePersonCell.m */; };
 		48F858261C86BEA900375321 /* MessageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F858251C86BEA900375321 /* MessageListTableViewCell.m */; };
 		48F858291C86C6E600375321 /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F858281C86C6E600375321 /* MessageListViewController.m */; };
 		48F8582C1C86CF1300375321 /* MessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F8582B1C86CF1300375321 /* MessageListModel.m */; };
@@ -602,6 +606,14 @@
 		48BEC1811C86A20D000EFEBD /* icon_diagnosis@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_diagnosis@3x.png"; sourceTree = "<group>"; };
 		48BEC1821C86A20D000EFEBD /* icon_suspected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_suspected@2x.png"; sourceTree = "<group>"; };
 		48BEC1831C86A20D000EFEBD /* icon_suspected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_suspected@3x.png"; sourceTree = "<group>"; };
+		48CFE44F1C927A7D00C5DF6A /* AddIndicatorsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddIndicatorsMainViewController.h; sourceTree = "<group>"; };
+		48CFE4501C927A7D00C5DF6A /* AddIndicatorsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddIndicatorsMainViewController.m; sourceTree = "<group>"; };
+		48CFE4521C927C9000C5DF6A /* AddNewMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewMachineViewController.h; sourceTree = "<group>"; };
+		48CFE4531C927C9000C5DF6A /* AddNewMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewMachineViewController.m; sourceTree = "<group>"; };
+		48CFE4551C9282F100C5DF6A /* InvitePersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitePersonViewController.h; sourceTree = "<group>"; };
+		48CFE4561C9282F100C5DF6A /* InvitePersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitePersonViewController.m; sourceTree = "<group>"; };
+		48CFE4581C92834100C5DF6A /* InvitePersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitePersonCell.h; sourceTree = "<group>"; };
+		48CFE4591C92834100C5DF6A /* InvitePersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitePersonCell.m; sourceTree = "<group>"; };
 		48F858241C86BEA900375321 /* MessageListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListTableViewCell.h; sourceTree = "<group>"; };
 		48F858251C86BEA900375321 /* MessageListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListTableViewCell.m; sourceTree = "<group>"; };
 		48F858271C86C6E600375321 /* MessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
@@ -770,6 +782,8 @@
 		48005A271C8D3B3700943F9A /* FollowViewS */ = {
 			isa = PBXGroup;
 			children = (
+				48CFE4581C92834100C5DF6A /* InvitePersonCell.h */,
+				48CFE4591C92834100C5DF6A /* InvitePersonCell.m */,
 				0B980C811C917FE700807DE4 /* TouchLabel.h */,
 				0B980C821C917FE700807DE4 /* TouchLabel.m */,
 				0B980C7E1C917FD000807DE4 /* UIButton+ImageTitleSpacing.h */,
@@ -984,6 +998,7 @@
 		484779811C83EE570060B3C9 /* follow */ = {
 			isa = PBXGroup;
 			children = (
+				48CFE44B1C927A2E00C5DF6A /* addType */,
 				0B980C651C917D4D00807DE4 /* NoFollowViewController.h */,
 				0B980C661C917D4D00807DE4 /* NoFollowViewController.m */,
 				48005A6C1C8EAF7800943F9A /* CalandarViewController.h */,
@@ -1255,6 +1270,20 @@
 			);
 			path = mannage_file;
 			sourceTree = "<group>";
+		};
+		48CFE44B1C927A2E00C5DF6A /* addType */ = {
+			isa = PBXGroup;
+			children = (
+				48CFE4551C9282F100C5DF6A /* InvitePersonViewController.h */,
+				48CFE4561C9282F100C5DF6A /* InvitePersonViewController.m */,
+				48CFE4521C927C9000C5DF6A /* AddNewMachineViewController.h */,
+				48CFE4531C927C9000C5DF6A /* AddNewMachineViewController.m */,
+				48CFE44F1C927A7D00C5DF6A /* AddIndicatorsMainViewController.h */,
+				48CFE4501C927A7D00C5DF6A /* AddIndicatorsMainViewController.m */,
+			);
+			name = addType;
+			path = XHJY_app/controllers/planer/addType;
+			sourceTree = SOURCE_ROOT;
 		};
 		48F858221C86BE9400375321 /* family */ = {
 			isa = PBXGroup;
@@ -1741,6 +1770,7 @@
 				48F858631C87F56300375321 /* BaseHightViewController.m in Sources */,
 				48BEC16C1C869E0F000EFEBD /* EquipmentDataTableViewCell.m in Sources */,
 				48005A691C8EAE3000943F9A /* SZCalendarCell.m in Sources */,
+				48CFE4511C927A7D00C5DF6A /* AddIndicatorsMainViewController.m in Sources */,
 				48F8587D1C892F8100375321 /* EWMViewController.m in Sources */,
 				48BEC0E11C8435B9000EFEBD /* BaseViewController.m in Sources */,
 				0B980CE91C9184A500807DE4 /* RemarkTableViewCell.m in Sources */,
@@ -1768,6 +1798,7 @@
 				4897C23B1C901F1800E4D18B /* BottomTableViewCell.m in Sources */,
 				48BEC1501C86794B000EFEBD /* EquipmentMessageViewController.m in Sources */,
 				4897C23E1C90291700E4D18B /* SuperChartView.m in Sources */,
+				48CFE45A1C92834100C5DF6A /* InvitePersonCell.m in Sources */,
 				0B980CF61C91859800807DE4 /* HZQDatePickerView.m in Sources */,
 				0B980CC71C91821900807DE4 /* DetailDrugViewController.m in Sources */,
 				48F858771C882D7E00375321 /* FoucusMeViewController.m in Sources */,
@@ -1782,12 +1813,14 @@
 				0B980CFB1C9185AD00807DE4 /* ZZHDateView.m in Sources */,
 				48005A5F1C8E698F00943F9A /* AlarmAnalysiscell.m in Sources */,
 				48BEC12F1C85852E000EFEBD /* FileDetailViewController.m in Sources */,
+				48CFE4571C9282F100C5DF6A /* InvitePersonViewController.m in Sources */,
 				48BEC0FA1C853744000EFEBD /* ManagerFilesViewController.m in Sources */,
 				48BEC0CA1C841A83000EFEBD /* ManageBtn.m in Sources */,
 				48F858291C86C6E600375321 /* MessageListViewController.m in Sources */,
 				484779891C83F1AC0060B3C9 /* ManagerViewController.m in Sources */,
 				4897C2941C91208400E4D18B /* batteryImageView.m in Sources */,
 				48BEC1671C869CE8000EFEBD /* EquipmentDataViewController.m in Sources */,
+				48CFE4541C927C9000C5DF6A /* AddNewMachineViewController.m in Sources */,
 				0B980D111C91866400807DE4 /* LoginViewController.m in Sources */,
 				484779861C83EF410060B3C9 /* Singleton.m in Sources */,
 				0B980CD81C91847500807DE4 /* TimeTableViewCell.m in Sources */,

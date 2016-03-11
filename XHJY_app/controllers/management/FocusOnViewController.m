@@ -9,8 +9,6 @@
 #import "FocusOnViewController.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>//CNContactPickerViewController
-//#import "LBXScanResult.h"
-//#import "LBXScanWrapper.h"
 #import "LBXScanViewStyle.h"
 #import "SubLBXScanViewController.h"
 #import "GxqAlertView.h"
