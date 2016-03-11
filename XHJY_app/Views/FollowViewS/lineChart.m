@@ -8,6 +8,7 @@
 
 #import "lineChart.h"
 
+
 @interface lineChart () {
     
     NSMutableArray *_ECGYArray;//心电图y坐标
@@ -32,13 +33,19 @@
 
 -(void)setArc:(double)arc {
     
+    NSInteger Xheight = self.bounds.size.height / 4;
+    
     _arc = arc;
     double yECG = 2.0 - arc;
     //每0.1 ＝ 5dp
     //y坐标
-    double _y =  5+ yECG * 50;
+    double _y =  yECG * Xheight;
+    
+    NSInteger Ynum = (self.bounds.size.width - 26) / 31;
+    
     [_ECGYArray insertObject:[NSNumber numberWithDouble:_y] atIndex:0];
-    if ([_ECGYArray count] > 69) {
+    if ([_ECGYArray count] > 5 * (Ynum - 1) + 1) {
+        
         [_ECGYArray removeLastObject];//最多56个点
     }
     [self setNeedsDisplay];
@@ -56,27 +63,35 @@
     UIColor *color = [UIColor colorWithRed:251/255.0 green:173/255.0 blue:195/255.0 alpha:1];
     [color set];
 
+    
+    NSInteger Ynum = (self.bounds.size.width - 26) / 31;
+    NSInteger Xnum =  9;
+    NSInteger  Xheight = self.bounds.size.height / 8;
+    
     //先画出背景格子 248 * 342
     //先画粗线 粗线间隔：31 粗线直径：2  横竖12根粗线   左侧线距左边26
 
     NSMutableArray *verticalArray = [NSMutableArray array];//竖线粗线的点
     //竖线12
-    for (int i = 0; i < 15; i++) {
+    
+    
+    
+    for (int i = 0; i < Ynum; i++) {
         
-        NSInteger x = 26 + 24 * i;
+        NSInteger x = 26 + 31 * i;
         [verticalArray addObject:[NSNumber numberWithInteger:x]];
-        CGContextMoveToPoint(context, x, 5);
-        CGContextAddLineToPoint(context, x, 200 + 5);
+        CGContextMoveToPoint(context, x,0);
+        CGContextAddLineToPoint(context, x, Xheight * (Xnum - 1));
     }
     
     NSMutableArray *horizontalArray = [NSMutableArray array];
     //横线9
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < Xnum; i++) {
         
-        NSInteger y = 5 + 24 * i;
+        NSInteger y =  Xheight * i;
         [horizontalArray addObject:[NSNumber numberWithInteger:y]];
         CGContextMoveToPoint(context, 26 , y);
-        CGContextAddLineToPoint(context, 26 + 342, y);
+        CGContextAddLineToPoint(context, 26 + 31 * (Ynum - 1), y);
     }
     //渲染
     CGContextStrokePath(context);
@@ -97,8 +112,8 @@
         
         for (int i = 0; i < 4; i++) {
             [ECGXArray addObject:[NSNumber numberWithInteger:x + 6 * i]];
-            CGContextMoveToPoint(context, x + 6 * i, 5);
-            CGContextAddLineToPoint(context, x + 6 * i, 200 + 5);
+            CGContextMoveToPoint(context, x + 6 * i, 0);
+            CGContextAddLineToPoint(context, x + 6 * i, Xheight * (Xnum - 1));
         }
     }
     [ECGXArray addObject:[verticalArray lastObject]];
@@ -107,10 +122,10 @@
     for (int i = 0 ; i < [horizontalArray count] - 1; i++) {
         //每一根横线粗线的y值
         NSInteger y = [[horizontalArray objectAtIndex:i] integerValue];
-        y += 2 + 5;
+        y += 2 + Xheight / 5;
         for (int i = 0; i < 4; i++) {
-            CGContextMoveToPoint(context, 26 , y + 6 * i);
-            CGContextAddLineToPoint(context, 26 + 342, y + 6 * i);
+            CGContextMoveToPoint(context, 26 , y + Xheight / 5 * i);
+            CGContextAddLineToPoint(context, 26 + 31 * (Ynum - 1), y + Xheight / 5 * i);
         }
     }
     
