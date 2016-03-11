@@ -11,6 +11,10 @@
 #import "UIButton+ImageTitleSpacing.h"
 #import "TouchLabel.h"
 #import "ZHRampView.h"
+
+#import "AnalysisViewController.h"
+#import "VtViewController.h"
+#import "AlarmViewController.h"
 @interface HavePersonDetailView ()
 
 @end
@@ -660,6 +664,7 @@
 
 }
 -(void)analyzeBtn:(UIButton *)sender{
+    [self.HPVC.navigationController pushViewController:[[AnalysisViewController alloc]init ]animated:YES];
     NSLog(@"分析");
 }
 -(void)stateBtn:(UIButton *)sender{
@@ -667,7 +672,7 @@
 }
 -(void)warningBtn:(UIButton *)sender{
     NSLog(@"警告");
-   // [self.HPVC.navigationController pushViewController:[EgViewController new] animated:NO];
+    [self.HPVC.navigationController pushViewController:[AlarmViewController new] animated:NO];
 
 }
 

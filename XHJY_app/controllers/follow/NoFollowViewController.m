@@ -11,6 +11,7 @@
 #import "NoPersonView.h"
 #import "HavePersonDetailView.h"
 #import "CXSlideBar.h"
+#import "AnalysisViewController.h"
 
 @interface NoFollowViewController ()<CXSlideBarDelegate,HavePersonDetailViewDelegate>
 {
