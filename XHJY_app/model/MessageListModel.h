@@ -13,8 +13,6 @@
 @property (nonatomic,copy) NSString *type;
 //时间
 @property (nonatomic,copy) NSString *time;
-//上午下午
-@property (nonatomic,copy) NSString *tm;
 //详情
 @property(nonatomic,copy) NSString *detailText;
 @end

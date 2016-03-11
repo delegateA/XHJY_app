@@ -103,8 +103,9 @@
         }
         
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH
-                                                                              - 20 -22, (40 - 22) / 2, 22, 22)];
-        imageView.backgroundColor = [UIColor blackColor];
+                                                                              - 20 -22, (40 - 22) / 2, 12, 22)];
+        imageView.image = ImageNamed(@"icon-_drop_left_normal.png");
+
         [_midView addSubview:imageView];
         
     }

@@ -46,17 +46,13 @@
     [self addSubview:_nameLabel];
     
     
-    _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 100 - 45, 30, 100, 14)];
+    _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH  - 15 - (SCREEN_WIDTH - 25 - 25 - 10 - 100 - 15), 30, SCREEN_WIDTH - 25 - 25 - 10 - 100 - 15, 14)];
     _timeLabel.textAlignment = NSTextAlignmentRight;
     _timeLabel.textColor = [UIColor blackColor];
-    _timeLabel.font = [UIFont systemFontOfSize:18];
+    _timeLabel.font = [UIFont systemFontOfSize:16];
+    _timeLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:_timeLabel];
     
-    
-    _tmLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 34, 40, 8)];
-    _tmLabel.textColor = [UIColor grayColor];
-    _tmLabel.font = [UIFont systemFontOfSize:10];
-    [self addSubview:_tmLabel];
     
     _detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(25 + 25 + 10, 52, SCREEN_WIDTH - 80 - 50 - 10, 40)];
     _detailLabel.textColor = [UIColor grayColor];

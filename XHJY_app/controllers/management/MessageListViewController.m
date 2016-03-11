@@ -34,13 +34,11 @@
         
         MessageListModel *user = [[MessageListModel alloc] init];
         [user setType:@"系统"];
-        [user setTm:@"AA"];
-        [user setTime:@"09:33"];
+        [user setTime:@"2016-03-02 09:33:22"];
         [user setDetailText:@"2016-03-02 15:33:28.446 XHJY_app[1850:67655] Unknown class HomeViewController in Interface Builder file."];
         
         MessageListModel *user2 = [[MessageListModel alloc] init];
         [user2 setType:@"邀请"];
-        [user2 setTm:@"AA"];
         [user2 setTime:@"09:33"];
         [user2 setDetailText:@"2016-03-02 15:33:28.446 "];
         
@@ -86,7 +84,6 @@
     }
     cell.nameLabel.text = model.type;
     cell.timeLabel.text = model.time;
-    cell.tmLabel.text = model.tm;
     [cell setIntroductionText:model.detailText];
     return cell;
 }
