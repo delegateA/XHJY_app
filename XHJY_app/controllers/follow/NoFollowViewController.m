@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
-    if (isHaveData==NO) {
+    if (isHaveData==YES) {
 //        [self createView1];
         [self setUpViews];
     }else{

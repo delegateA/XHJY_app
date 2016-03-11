@@ -25,6 +25,8 @@
 
 @property(nonatomic,copy)UIView *mainView;
 
+@property(nonatomic,assign)BOOL show;
+
 @end
 
 @implementation CreatFileViewController
@@ -39,6 +41,7 @@
     self.mainView.hidden = NO;
     [self.collectionView reloadData];
     
+    self.show = NO;
 }
 
 - (UIView *)mainView
@@ -71,9 +74,9 @@
             
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.frame = CGRectMake(SCREEN_WIDTH - 40 - 22, 50, 18, 10);
-                button.backgroundColor = [UIColor blackColor];
-                [button setBackgroundImage:ImageNamed(@"btn_b_normal") forState:UIControlStateNormal];
-                [button setBackgroundImage:ImageNamed(@"btn_b_presss") forState:UIControlStateHighlighted];
+                button.backgroundColor = [UIColor whiteColor];
+                [button setBackgroundImage:ImageNamed(@"icon-_drop_down_normal.png") forState:UIControlStateNormal];
+                [button setBackgroundImage:ImageNamed(@"icon-_drop_down_press.png") forState:UIControlStateHighlighted];
                 button.tag = 99;
                 [button addTarget:self action:@selector(selectViewShow:) forControlEvents:UIControlEventTouchUpInside];
                 [_mainView addSubview:button];
@@ -286,10 +289,27 @@
 
 - (void)selectViewShow:(UIButton *)sender
 {
-    [UIView animateWithDuration:0.5 animations:^{
+    
+    if (self.show == YES) {
         
-        self.selectView.alpha = 1;
-    }];
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.selectView.alpha = 0;
+        }];
+
+    }
+    
+    else
+    {
+       
+        
+        [UIView animateWithDuration:0.5 animations:^{
+        
+            self.selectView.alpha = 1;
+        }];
+    }
+     self.show = !self.show;
+   
 }
 
 

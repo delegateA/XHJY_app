@@ -66,8 +66,8 @@
         
         
         _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btn.frame = CGRectMake(SCREEN_WIDTH - 80, 30 + 17 + 12 + 17 + 25, 40, 20);
-        _btn.backgroundColor = [UIColor blackColor];
+        _btn.frame = CGRectMake(SCREEN_WIDTH - 50, 30 + 17 + 12 + 17 + 25 + 4, 24, 12);
+        [_btn setBackgroundImage:ImageNamed(@"btn_transverse_press.png") forState:UIControlStateNormal];
         [self addSubview:_btn];
         
         

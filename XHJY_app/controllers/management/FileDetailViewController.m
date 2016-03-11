@@ -28,6 +28,8 @@
 @property(nonatomic,copy)UIButton *deleteBtn;
 @property(nonatomic,copy)UIButton *editOverBtn;
 
+@property(nonatomic,assign)BOOL show;
+
 /**
  *  下面的图片
  */
@@ -54,6 +56,7 @@
     
     self.mainView.hidden = NO;
     self.mainView.userInteractionEnabled = NO;
+    self.show = NO;
 }
 
 #pragma mark -------懒加载
@@ -86,10 +89,9 @@
                 textfield.userInteractionEnabled = NO;
                 
                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                button.backgroundColor = [UIColor blackColor];
                 button.frame = CGRectMake(SCREEN_WIDTH - 40 - 22, 50, 18, 10);
-                [button setBackgroundImage:ImageNamed(@"btn_b_normal") forState:UIControlStateNormal];
-                [button setBackgroundImage:ImageNamed(@"btn_b_presss") forState:UIControlStateHighlighted];
+                [button setBackgroundImage:ImageNamed(@"icon-_drop_down_normal.png") forState:UIControlStateNormal];
+                [button setBackgroundImage:ImageNamed(@"icon-_drop_down_press.png") forState:UIControlStateHighlighted];
                 button.tag = 99;
                 [button addTarget:self action:@selector(selectViewShow:) forControlEvents:UIControlEventTouchUpInside];
                 [_mainView addSubview:button];
@@ -232,7 +234,7 @@
 {
     if (!_selectView) {
         
-        _selectView = [[UIView alloc]initWithFrame:CGRectMake(30, 64 + 70  + 200, 70, 44 * 3)];
+        _selectView = [[UIView alloc]initWithFrame:CGRectMake(30, 64 + 70 , 70, 44 * 3)];
         _selectView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_selectView];
         for (int i = 0; i < 3; i++) {
@@ -423,11 +425,29 @@
  */
 - (void)selectViewShow:(UIButton *)sender
 {
-    [UIView animateWithDuration:0.5 animations:^{
+    
+    if (self.show == YES) {
         
-        self.selectView.alpha = 1;
-    }];
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.selectView.alpha = 0;
+        }];
+        
+    }
+    
+    else
+    {
+        
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            self.selectView.alpha = 1;
+        }];
+    }
+    self.show = !self.show;
+    
 }
+
 
 /**
  *  关键盘
