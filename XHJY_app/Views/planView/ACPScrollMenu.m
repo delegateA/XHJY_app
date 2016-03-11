@@ -50,7 +50,7 @@ static CGFloat const kScrollViewItemMarginWidth = 16.0f;
 	}
     
     
-	int menuItemsArrayCount = menuItems.count;
+	NSInteger menuItemsArrayCount = menuItems.count;
     
 	// Setting ScrollView
 	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
