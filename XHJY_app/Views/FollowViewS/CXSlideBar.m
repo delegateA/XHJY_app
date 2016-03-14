@@ -7,7 +7,7 @@
 //
 
 #import "CXSlideBar.h"
-
+#import "FocusOnViewController.h"
 
 @interface CXSlideBar()<UIScrollViewDelegate>
 @property (strong, nonatomic) UIScrollView * scrollView;
@@ -90,15 +90,16 @@
     }
     if (viewT.tag==0) {
         NSLog(@"########我是添加");
+        [self.AddVC.navigationController pushViewController:[FocusOnViewController new] animated:YES];
     }else{
-    NSInteger last = self.currentIndex;
-    self.currentIndex = viewT.tag;
+        NSInteger last = self.currentIndex;
+        self.currentIndex = viewT.tag;
     CABasicAnimation *AN=[CABasicAnimation animationWithKeyPath:@"bounds.size"];
     [AN setToValue:[NSValue valueWithCGSize:CGSizeMake(60, 60)]];
     AN.fillMode=kCAFillModeForwards;
     AN.removedOnCompletion=NO;
     [[viewT layer]addAnimation:AN forKey:@" img"];
-    [self highlightedCategory:last];
+        [self highlightedCategory:last];
     }
     if ([self.delegate respondsToSelector:@selector(slideBarTouch:atIndex:)]) {
         [self.delegate slideBarTouch:self atIndex:self.currentIndex];

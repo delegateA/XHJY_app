@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B923C141C966C62001D07E5 /* ZHightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B923C121C966C61001D07E5 /* ZHightView.m */; };
+		0B923C151C966C62001D07E5 /* ZHightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B923C131C966C62001D07E5 /* ZHightView.xib */; };
+		0B923C1C1C9672B9001D07E5 /* ZSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B923C1A1C9672B9001D07E5 /* ZSexView.m */; };
+		0B923C1D1C9672B9001D07E5 /* ZSexView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B923C1B1C9672B9001D07E5 /* ZSexView.xib */; };
 		0B980C671C917D4D00807DE4 /* NoFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B980C661C917D4D00807DE4 /* NoFollowViewController.m */; };
 		0B980C701C917F5A00807DE4 /* NoPersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B980C6D1C917F5A00807DE4 /* NoPersonView.m */; };
 		0B980C711C917F5A00807DE4 /* HavePersonDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B980C6F1C917F5A00807DE4 /* HavePersonDetailView.m */; };
@@ -50,6 +54,15 @@
 		0B980D121C91866400807DE4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B980D0D1C91866400807DE4 /* LoginViewController.xib */; };
 		0B980D131C91866400807DE4 /* RegistarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B980D0F1C91866400807DE4 /* RegistarViewController.m */; };
 		0B980D141C91866400807DE4 /* RegistarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B980D101C91866400807DE4 /* RegistarViewController.xib */; };
+		0BA2EB051C96654700F9EE59 /* ZDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA2EB031C96654700F9EE59 /* ZDateView.m */; };
+		0BA2EB061C96654700F9EE59 /* ZDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA2EB041C96654700F9EE59 /* ZDateView.xib */; };
+		0BBC3A361C95D0BD008BF6C2 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC3A351C95D0BD008BF6C2 /* InformationViewController.m */; };
+		0BBC3A401C95D1DB008BF6C2 /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC3A3B1C95D1DB008BF6C2 /* InformationCell.m */; };
+		0BBC3A411C95D1DB008BF6C2 /* InformationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC3A3C1C95D1DB008BF6C2 /* InformationCell.xib */; };
+		0BBC3A421C95D1DB008BF6C2 /* InformationUpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC3A3E1C95D1DB008BF6C2 /* InformationUpCell.m */; };
+		0BBC3A431C95D1DB008BF6C2 /* InformationUpCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC3A3F1C95D1DB008BF6C2 /* InformationUpCell.xib */; };
+		0BBC3A471C95D1F3008BF6C2 /* ZZDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC3A451C95D1F3008BF6C2 /* ZZDatePickerView.m */; };
+		0BBC3A481C95D1F3008BF6C2 /* ZZDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC3A461C95D1F3008BF6C2 /* ZZDatePickerView.xib */; };
 		48005A261C8D355700943F9A /* AlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48005A251C8D355700943F9A /* AlarmViewController.m */; };
 		48005A2A1C8D3B5400943F9A /* AlarmViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48005A291C8D3B5400943F9A /* AlarmViewTableViewCell.m */; };
 		48005A2D1C8D54C000943F9A /* AlarmDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48005A2C1C8D54C000943F9A /* AlarmDetailViewController.m */; };
@@ -333,6 +346,12 @@
 
 /* Begin PBXFileReference section */
 		05AEDDD8BCA9D3382D3BC234 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B923C111C966C61001D07E5 /* ZHightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHightView.h; sourceTree = "<group>"; };
+		0B923C121C966C61001D07E5 /* ZHightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHightView.m; sourceTree = "<group>"; };
+		0B923C131C966C62001D07E5 /* ZHightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHightView.xib; sourceTree = "<group>"; };
+		0B923C191C9672B9001D07E5 /* ZSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSexView.h; sourceTree = "<group>"; };
+		0B923C1A1C9672B9001D07E5 /* ZSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSexView.m; sourceTree = "<group>"; };
+		0B923C1B1C9672B9001D07E5 /* ZSexView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSexView.xib; sourceTree = "<group>"; };
 		0B980C651C917D4D00807DE4 /* NoFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoFollowViewController.h; sourceTree = "<group>"; };
 		0B980C661C917D4D00807DE4 /* NoFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoFollowViewController.m; sourceTree = "<group>"; };
 		0B980C6C1C917F5A00807DE4 /* NoPersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPersonView.h; sourceTree = "<group>"; };
@@ -405,6 +424,20 @@
 		0B980D0E1C91866400807DE4 /* RegistarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistarViewController.h; sourceTree = "<group>"; };
 		0B980D0F1C91866400807DE4 /* RegistarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistarViewController.m; sourceTree = "<group>"; };
 		0B980D101C91866400807DE4 /* RegistarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistarViewController.xib; sourceTree = "<group>"; };
+		0BA2EB021C96654700F9EE59 /* ZDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDateView.h; sourceTree = "<group>"; };
+		0BA2EB031C96654700F9EE59 /* ZDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDateView.m; sourceTree = "<group>"; };
+		0BA2EB041C96654700F9EE59 /* ZDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDateView.xib; sourceTree = "<group>"; };
+		0BBC3A341C95D0BD008BF6C2 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		0BBC3A351C95D0BD008BF6C2 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		0BBC3A3A1C95D1DB008BF6C2 /* InformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCell.h; sourceTree = "<group>"; };
+		0BBC3A3B1C95D1DB008BF6C2 /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
+		0BBC3A3C1C95D1DB008BF6C2 /* InformationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationCell.xib; sourceTree = "<group>"; };
+		0BBC3A3D1C95D1DB008BF6C2 /* InformationUpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationUpCell.h; sourceTree = "<group>"; };
+		0BBC3A3E1C95D1DB008BF6C2 /* InformationUpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationUpCell.m; sourceTree = "<group>"; };
+		0BBC3A3F1C95D1DB008BF6C2 /* InformationUpCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationUpCell.xib; sourceTree = "<group>"; };
+		0BBC3A441C95D1F3008BF6C2 /* ZZDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZDatePickerView.h; sourceTree = "<group>"; };
+		0BBC3A451C95D1F3008BF6C2 /* ZZDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZDatePickerView.m; sourceTree = "<group>"; };
+		0BBC3A461C95D1F3008BF6C2 /* ZZDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZZDatePickerView.xib; sourceTree = "<group>"; };
 		48005A241C8D355700943F9A /* AlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmViewController.h; sourceTree = "<group>"; };
 		48005A251C8D355700943F9A /* AlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmViewController.m; sourceTree = "<group>"; };
 		48005A281C8D3B5400943F9A /* AlarmViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmViewTableViewCell.h; sourceTree = "<group>"; };
@@ -795,6 +828,8 @@
 				0B980D0E1C91866400807DE4 /* RegistarViewController.h */,
 				0B980D0F1C91866400807DE4 /* RegistarViewController.m */,
 				0B980D101C91866400807DE4 /* RegistarViewController.xib */,
+				0BBC3A341C95D0BD008BF6C2 /* InformationViewController.h */,
+				0BBC3A351C95D0BD008BF6C2 /* InformationViewController.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -802,6 +837,24 @@
 		48005A271C8D3B3700943F9A /* FollowViewS */ = {
 			isa = PBXGroup;
 			children = (
+				0B923C191C9672B9001D07E5 /* ZSexView.h */,
+				0B923C1A1C9672B9001D07E5 /* ZSexView.m */,
+				0B923C1B1C9672B9001D07E5 /* ZSexView.xib */,
+				0B923C111C966C61001D07E5 /* ZHightView.h */,
+				0B923C121C966C61001D07E5 /* ZHightView.m */,
+				0B923C131C966C62001D07E5 /* ZHightView.xib */,
+				0BA2EB021C96654700F9EE59 /* ZDateView.h */,
+				0BA2EB031C96654700F9EE59 /* ZDateView.m */,
+				0BA2EB041C96654700F9EE59 /* ZDateView.xib */,
+				0BBC3A441C95D1F3008BF6C2 /* ZZDatePickerView.h */,
+				0BBC3A451C95D1F3008BF6C2 /* ZZDatePickerView.m */,
+				0BBC3A461C95D1F3008BF6C2 /* ZZDatePickerView.xib */,
+				0BBC3A3A1C95D1DB008BF6C2 /* InformationCell.h */,
+				0BBC3A3B1C95D1DB008BF6C2 /* InformationCell.m */,
+				0BBC3A3C1C95D1DB008BF6C2 /* InformationCell.xib */,
+				0BBC3A3D1C95D1DB008BF6C2 /* InformationUpCell.h */,
+				0BBC3A3E1C95D1DB008BF6C2 /* InformationUpCell.m */,
+				0BBC3A3F1C95D1DB008BF6C2 /* InformationUpCell.xib */,
 				48CFE4581C92834100C5DF6A /* InvitePersonCell.h */,
 				48CFE4591C92834100C5DF6A /* InvitePersonCell.m */,
 				0B980C811C917FE700807DE4 /* TouchLabel.h */,
@@ -1605,6 +1658,7 @@
 				484779A11C83F27D0060B3C9 /* icon-_lists@2x.png in Resources */,
 				4897C2231C8FD08500E4D18B /* Icon-_curve_b@3x.png in Resources */,
 				48005A451C8D660700943F9A /* attitude_sit_r@3x.png in Resources */,
+				0B923C1D1C9672B9001D07E5 /* ZSexView.xib in Resources */,
 				0B980CE51C91848B00807DE4 /* ClassHeaderTableViewCell.xib in Resources */,
 				4897C22B1C8FD08500E4D18B /* sit@3x.png in Resources */,
 				4847799E1C83F27D0060B3C9 /* btn_set_press@3x.png in Resources */,
@@ -1620,6 +1674,7 @@
 				4847799B1C83F27D0060B3C9 /* btn_set_normal@2x.png in Resources */,
 				48BEC1861C86A20D000EFEBD /* icon_upload_normal@2x.png in Resources */,
 				48005A511C8D660700943F9A /* yellow@3x.png in Resources */,
+				0BBC3A411C95D1DB008BF6C2 /* InformationCell.xib in Resources */,
 				48BEC18C1C86A20D000EFEBD /* btn_add_f_press@2x.png in Resources */,
 				4897C1D01C8EB96800E4D18B /* btn_left_press@3x.png in Resources */,
 				4897C21A1C8FD08500E4D18B /* Icon_curve_blue@2x.png in Resources */,
@@ -1627,6 +1682,7 @@
 				48CFE4621C92AD8D00C5DF6A /* btn_transverse_press@3x.png in Resources */,
 				484779A41C83F27D0060B3C9 /* icon-_message@3x.png in Resources */,
 				48CFE4631C92AD8D00C5DF6A /* icon-_drop_down_normal@2x.png in Resources */,
+				0BBC3A431C95D1DB008BF6C2 /* InformationUpCell.xib in Resources */,
 				48BEC1851C86A20D000EFEBD /* icon_upload@3x.png in Resources */,
 				0B980CE31C91848B00807DE4 /* ClassTableViewCell.xib in Resources */,
 				4897C22F1C8FD08500E4D18B /* walk@3x.png in Resources */,
@@ -1670,7 +1726,9 @@
 				48BEC1971C86A20D000EFEBD /* icon_suspected@3x.png in Resources */,
 				484779A81C83F27D0060B3C9 /* icon_equ@3x.png in Resources */,
 				48F858591C87E92300375321 /* icon_target_blue@3x.png in Resources */,
+				0BA2EB061C96654700F9EE59 /* ZDateView.xib in Resources */,
 				48BEC0FB1C853744000EFEBD /* ManagerFilesViewController.xib in Resources */,
+				0B923C151C966C62001D07E5 /* ZHightView.xib in Resources */,
 				48CFE4651C92AD8D00C5DF6A /* icon-_drop_down_press@2x.png in Resources */,
 				4897C1D11C8EB96800E4D18B /* btn_right_normal@2x.png in Resources */,
 				0B980D041C9185E900807DE4 /* PlanCell.xib in Resources */,
@@ -1689,6 +1747,7 @@
 				48F8583A1C87CD2900375321 /* btn_delete_red_normal@3x.png in Resources */,
 				4897C2201C8FD08500E4D18B /* Icon_sprot@2x.png in Resources */,
 				4802CCF71C7D9D1F00E0F3DB /* Assets.xcassets in Resources */,
+				0BBC3A481C95D1F3008BF6C2 /* ZZDatePickerView.xib in Resources */,
 				4897C22A1C8FD08500E4D18B /* sit@2x.png in Resources */,
 				48F8588E1C89417E00375321 /* icon_square_s@3x.png in Resources */,
 				48005A421C8D660700943F9A /* attitude_run_r@2x.png in Resources */,
@@ -1795,6 +1854,7 @@
 				0B980C771C917F7300807DE4 /* CXSlideBar.m in Sources */,
 				0B980CF21C91856800807DE4 /* Model.xcdatamodel in Sources */,
 				0B980CE21C91848B00807DE4 /* ClassTableViewCell.m in Sources */,
+				0B923C141C966C62001D07E5 /* ZHightView.m in Sources */,
 				48BEC1581C867B11000EFEBD /* EquipmentMessageTableViewCell.m in Sources */,
 				4897C2471C902E8C00E4D18B /* BarView.m in Sources */,
 				48BEC1331C8588EC000EFEBD /* DCPicScrollView.m in Sources */,
@@ -1810,8 +1870,10 @@
 				48F858631C87F56300375321 /* BaseHightViewController.m in Sources */,
 				48BEC16C1C869E0F000EFEBD /* EquipmentDataTableViewCell.m in Sources */,
 				48005A691C8EAE3000943F9A /* SZCalendarCell.m in Sources */,
+				0BA2EB051C96654700F9EE59 /* ZDateView.m in Sources */,
 				48CFE4511C927A7D00C5DF6A /* AddIndicatorsMainViewController.m in Sources */,
 				48F8587D1C892F8100375321 /* EWMViewController.m in Sources */,
+				0BBC3A421C95D1DB008BF6C2 /* InformationUpCell.m in Sources */,
 				48BEC0E11C8435B9000EFEBD /* BaseViewController.m in Sources */,
 				0B980CE91C9184A500807DE4 /* RemarkTableViewCell.m in Sources */,
 				48BEC15D1C86891E000EFEBD /* ChangeEquipmentViewController.m in Sources */,
@@ -1837,6 +1899,7 @@
 				0B980C671C917D4D00807DE4 /* NoFollowViewController.m in Sources */,
 				4897C23B1C901F1800E4D18B /* BottomTableViewCell.m in Sources */,
 				48BEC1501C86794B000EFEBD /* EquipmentMessageViewController.m in Sources */,
+				0BBC3A401C95D1DB008BF6C2 /* InformationCell.m in Sources */,
 				4897C23E1C90291700E4D18B /* SuperChartView.m in Sources */,
 				48CFE45A1C92834100C5DF6A /* InvitePersonCell.m in Sources */,
 				0B980CF61C91859800807DE4 /* HZQDatePickerView.m in Sources */,
@@ -1847,6 +1910,7 @@
 				48BEC1071C855010000EFEBD /* CreatFileViewController.m in Sources */,
 				4847797D1C83EB990060B3C9 /* tabBarButton.m in Sources */,
 				0B980CC51C91821900807DE4 /* SelectViewController.m in Sources */,
+				0BBC3A471C95D1F3008BF6C2 /* ZZDatePickerView.m in Sources */,
 				4897C2441C902D4700E4D18B /* CombonedView.m in Sources */,
 				0B980CDA1C91847500807DE4 /* TimesTableViewCell.m in Sources */,
 				48005A261C8D355700943F9A /* AlarmViewController.m in Sources */,
@@ -1857,8 +1921,10 @@
 				48BEC0FA1C853744000EFEBD /* ManagerFilesViewController.m in Sources */,
 				48BEC0CA1C841A83000EFEBD /* ManageBtn.m in Sources */,
 				48F858291C86C6E600375321 /* MessageListViewController.m in Sources */,
+				0B923C1C1C9672B9001D07E5 /* ZSexView.m in Sources */,
 				484779891C83F1AC0060B3C9 /* ManagerViewController.m in Sources */,
 				4897C2941C91208400E4D18B /* batteryImageView.m in Sources */,
+				0BBC3A361C95D0BD008BF6C2 /* InformationViewController.m in Sources */,
 				48BEC1671C869CE8000EFEBD /* EquipmentDataViewController.m in Sources */,
 				48CFE4541C927C9000C5DF6A /* AddNewMachineViewController.m in Sources */,
 				0B980D111C91866400807DE4 /* LoginViewController.m in Sources */,

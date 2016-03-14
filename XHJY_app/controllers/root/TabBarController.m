@@ -8,7 +8,7 @@
 
 #import "TabBarController.h"
 #import "tabBarButton.h"
-
+#import "LoginViewController.h"
 @interface TabBarController ()
 {
      UIView *_bottomView;
@@ -16,10 +16,17 @@
     tabBarButton *_pastBtn;
 }
 @end
-
 @implementation TabBarController
-
-- (void)viewDidLoad {
+//登录注册页面
+-(void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSDictionary *dic=[defaults objectForKey:@"Message"];
+    
+    if (dic!=nil) {
+        LoginViewController *login=[[LoginViewController alloc]init];
+        [self.navigationController pushViewController:login animated:NO];
+    }
+}- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     

@@ -8,6 +8,7 @@
 
 #import "RegistarViewController.h"
 #import <MBProgressHUD.h>
+#import "InformationViewController.h"
 @interface RegistarViewController ()
 
 
@@ -264,9 +265,8 @@
         if (self.block) {
             self.block(arr);
         }
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
+        //[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController pushViewController:[InformationViewController new] animated:YES];    }
 }
 
 - (IBAction)BackLogin:(UIButton *)sender {
