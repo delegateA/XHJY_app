@@ -17,6 +17,9 @@
     self.messageTextField.textColor = [UIColor grayColor];
 //    self.messageTextField.layer.borderColor = [UIColor whiteColor].CGColor;
     self.selectBtn.hidden = YES;
+    self.messageLabel = [[UILabel alloc]initWithFrame:self.messageTextField.frame];
+    self.messageLabel.textColor = [UIColor grayColor];
+    [self.contentView addSubview:self.messageLabel];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

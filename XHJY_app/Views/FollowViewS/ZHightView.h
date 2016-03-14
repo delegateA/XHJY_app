@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ZHightPickerViewDelegate <NSObject>
-
--(void)getSelectHight:(NSString *)hight;
-
-@end
 
 @interface ZHightView : UIView
-+(ZHightView*)instanceDatePickerView;
-@property (weak, nonatomic) IBOutlet UIPickerView *DrugClass;
-- (IBAction)cannelBtn:(UIButton *)sender;
-- (IBAction)sureBtn:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIView *backgView;
-@property(nonatomic,weak)id<ZHightPickerViewDelegate>delegate;
+/**
+ *  返回的数据
+ */
+@property (nonatomic, copy) void(^calendarBlock)(NSInteger age);
+
+- (id)initWithFrame:(CGRect)frame withTitle:(NSString *)title withDataSource:(NSArray *)array;
+- (void)show;
+- (void)hidden;
 @end

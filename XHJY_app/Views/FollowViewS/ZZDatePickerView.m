@@ -10,110 +10,110 @@
 #import "UIColor+HexString.h"
 
 @interface ZZDatePickerView ()
-
-@property (nonatomic, strong) NSString *selectDate;
-
-@property (weak, nonatomic) IBOutlet UIButton *cannelBtn;
-@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
-@property (weak, nonatomic) IBOutlet UIView *backgVIew;
+{
+    UIView *mainView;
+    UIDatePicker *datePicker;
+}
 
 @end
 
 @implementation ZZDatePickerView
 
-+ (ZZDatePickerView *)instanceDatePickerView
+- (id)initWithFrame:(CGRect)frame withTime:(NSDate *)date
 {
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"ZZDatePickerView" owner:nil options:nil];
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        
+        UIView *backGroundView = [[UIView alloc]initWithFrame:self.frame];
+        backGroundView.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
+        [self addSubview:backGroundView];
+        
+        mainView = [[UIView alloc]init];
+        mainView.backgroundColor = [UIColor whiteColor];
+        [backGroundView addSubview:mainView];
+        
+        datePicker = [[UIDatePicker alloc]init];
+        datePicker.frame = CGRectMake(0, 30, SCREEN_WIDTH, datePicker.bounds.size.height);
+        datePicker.datePickerMode = UIDatePickerModeDate;
+        [datePicker setDate:date animated:YES];
+        
+        double daubleTime = -24 * (49 * 365 + 16 * 366) * 3600;
+        NSDate *temp = [NSDate dateWithTimeIntervalSinceNow:daubleTime];
+        NSDate *now = [NSDate date];
+        
+        datePicker.minimumDate = temp;
+        datePicker.maximumDate = now;
+        mainView.bounds = CGRectMake(0, 0, datePicker.bounds.size.width, datePicker.bounds.size.height + 30);
+        mainView.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT + mainView.bounds.size.height);
+        [mainView addSubview:datePicker];
+        
+        UIButton *bacekBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        bacekBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH / 4, 30);
+        [bacekBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [bacekBtn setTitleColor:[Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1] forState:UIControlStateNormal];
+        [bacekBtn addTarget:self action:@selector(closeView:) forControlEvents:UIControlEventTouchUpInside];
+        [mainView addSubview:bacekBtn];
+        
+        
+        
+        UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        sureBtn.frame = CGRectMake(SCREEN_WIDTH / 4 * 3, 0, SCREEN_WIDTH / 4, 30);
+        [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [sureBtn addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
+        [sureBtn setTitleColor:[Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1] forState:UIControlStateNormal];
+        [mainView addSubview:sureBtn];
+        
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4, 0, SCREEN_WIDTH / 2, 30)];
+        titleLabel.text = @"设置出生年月";
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.textColor = [Tools colorWithHexString:[Singleton sharedInstance].mainColor withAlpha:1];
+        [mainView addSubview:titleLabel];
+        
+    }
     
-    return [nibView objectAtIndex:0];
+    return self;
 }
 
-- (void)awakeFromNib
+
+- (void)closeView:(UIButton *)sender
 {
-    
-    
-//    let :NSDate = NSDate(timeIntervalSinceNow: daubleTime)
-//    let nowdate:NSDate = NSDate(timeIntervalSinceNow: Double(-24 * (4 * 365 + 1 * 366) * 3600))
-//    datePicker.minimumDate = tempDate
-//    datePicker.maximumDate = nowdate
-    self.backgVIew.layer.cornerRadius = 5;
-    self.backgVIew.layer.borderWidth = 1;
-    self.backgVIew.layer.borderColor = [[UIColor whiteColor]CGColor];
-    self.backgVIew.layer.masksToBounds = YES;
-    
-    /** 确定 */
-    self.sureBtn.layer.cornerRadius = 3;
-    self.sureBtn.layer.borderWidth = 1;
-    self.sureBtn.layer.borderColor = [[UIColor colorwithHexString:@"00D9C4"] CGColor];
-    self.sureBtn.layer.masksToBounds = YES;
-    
-    /** 取消按钮 */
-    self.cannelBtn.layer.cornerRadius = 3;
-    self.cannelBtn.layer.borderWidth = 1;
-    self.cannelBtn.layer.borderColor = [[UIColor colorwithHexString:@"BAB9B9"] CGColor];
-    self.cannelBtn.layer.masksToBounds = YES;
+    [self hidden];
 }
 
-- (NSString *)timeFormat
+- (void)selectTime:(UIButton *)sender
 {
-    double   date1 = -24 * (49 * 365 + 16 * 366) * 3600;
-    NSDate *date2=[NSDate dateWithTimeIntervalSinceNow:date1];
-   
-    self.datePickerView.minimumDate=date2;
-    self.datePickerView.maximumDate=[NSDate new];
-    NSDate *selected = self.datePickerView.date;
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//    NSString *currentOlderOneDateStr = [dateFormatter stringFromDate:selected];
+    [self hidden];
+    if (self.calendarBlock) {
+        self.calendarBlock([self ageWithDateOfBirth:datePicker.date]);
+    }
     
-    NSInteger age=[self ageWithDateOfBirth:selected];
-    NSString *str=[NSString stringWithFormat:@"%ld",age];
-    return str;
-   // return currentOlderOneDateStr;
 }
 
-- (void)animationbegin:(UIView *)view {
-    /* 放大缩小 */
-    
-    // 设定为缩放
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    
-    // 动画选项设定
-    animation.duration = 0.1; // 动画持续时间
-    animation.repeatCount = -1; // 重复次数
-    animation.autoreverses = YES; // 动画结束时执行逆动画
-    
-    // 缩放倍数
-    animation.fromValue = [NSNumber numberWithFloat:1.0]; // 开始时的倍率
-    animation.toValue = [NSNumber numberWithFloat:0.9]; // 结束时的倍率
-    
-    // 添加动画
-    [view.layer addAnimation:animation forKey:@"scale-layer"];
-
-}
-
-- (IBAction)removeBtnClick:(id)sender {
-    // 开始动画
-    [self animationbegin:sender];
-
-    [UIView animateWithDuration:0.3 animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+- (void)show
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        mainView.center = mainView.center =  CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT - mainView.bounds.size.height / 2);
+        
     }];
 }
 
-- (IBAction)sureBtnClick:(id)sender {
-    // 开始动画
-    [self animationbegin:sender];
-    
-    self.selectDate =[self timeFormat];
-    //delegate
-    [self.delegate getSelectDate:self.selectDate ];
-    
-    
-    [self removeBtnClick:nil];
+- (void)hidden
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        mainView.center = mainView.center =  CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT + mainView.bounds.size.height * 2);
+        
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self removeFromSuperview];
+            
+        }
+    }];
 }
+
 
 - (NSInteger)ageWithDateOfBirth:(NSDate *)date;
 {

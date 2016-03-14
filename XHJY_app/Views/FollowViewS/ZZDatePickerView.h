@@ -8,20 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ZZDatePickerViewDelegate <NSObject>
-
-- (void)getSelectDate:(NSString *)date ;
-
-@end
 
 @interface ZZDatePickerView : UIView
+/**
+ *  返回的年龄
+ */
+@property (nonatomic, copy) void(^calendarBlock)(NSInteger age);
 
-+ (ZZDatePickerView *)instanceDatePickerView;
-
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePickerView;
-
-@property (nonatomic, weak) id<ZZDatePickerViewDelegate> delegate;
-
+- (id)initWithFrame:(CGRect)frame withTime:(NSDate *)date;
+- (void)show;
+- (void)hidden;
 
 
 @end

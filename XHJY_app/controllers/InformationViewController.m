@@ -13,14 +13,14 @@
 #import "ZZDatePickerView.h"
 #import "ZDateView.h"
 #import "ZHightView.h"
-#import "ZSexView.h"
-@interface InformationViewController ()<UITableViewDataSource,UITableViewDelegate,ZZDatePickerViewDelegate,ZDatePickerViewDelegate,ZHightPickerViewDelegate,ZSexPickerViewDelegate>
+
+@interface InformationViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *_oneArr;
     
     ZDateView *_weightPikerView;
     ZHightView *_hightPockerView;
-    ZSexView *_sexPikerView;
+
 }
 @end
 
@@ -97,34 +97,67 @@
     
 }
 -(void)setupDateView{
-    ZZDatePickerView *pikerView = [ZZDatePickerView instanceDatePickerView];
-    pikerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 20);
-    [pikerView setBackgroundColor:[UIColor clearColor]];
-    pikerView.delegate = self;
-    //[pikerView.datePickerView setMinimumDate:[NSDate date]];
+    ZZDatePickerView *pikerView = [[ZZDatePickerView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTime:[NSDate date]];
+    pikerView.calendarBlock = ^(NSInteger age){
+        
+        /**
+         *  写选择后的方法
+         */
+        
+    };
     [self.view addSubview:pikerView];
 
 }
 -(void)setupWeightView{
-    _weightPikerView = [ZDateView instanceDatePickerView];
-    _weightPikerView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 20);
-    [_weightPikerView setBackgroundColor:[UIColor clearColor]];
-    _weightPikerView.delegate = self;
-    [self.view addSubview:_weightPikerView];
+    
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 150; i++) {
+        [array addObject:[[NSString alloc]initWithFormat:@"%dKg",i]];
+    }
+    
+    ZHightView  *pikerView = [[ZHightView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTitle:@"设置体重" withDataSource:array];
+    
+    pikerView.calendarBlock = ^(NSInteger message)
+    {
+        NSLog(@"%ld",message);
+        /**
+         *  写选择后的方法
+         */
+    };
+    [self.view addSubview:pikerView];
+    [pikerView show];
+    
 }
 -(void)setupHightView{
-    _hightPockerView = [ZHightView instanceDatePickerView];
-    _hightPockerView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 20);
-    [_hightPockerView setBackgroundColor:[UIColor clearColor]];
-    _hightPockerView.delegate = self;
-    [self.view addSubview:_hightPockerView];
+    
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 150; i++) {
+        [array addObject:[[NSString alloc]initWithFormat:@"%dcm",i]];
+    }
+    
+    ZHightView  *pikerView = [[ZHightView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTitle:@"设置身高" withDataSource:array];
+    
+    pikerView.calendarBlock = ^(NSInteger message)
+    {
+        NSLog(@"%ld",message);
+        /**
+         *  写选择后的方法
+         */
+    };
+    [self.view addSubview:pikerView];
+    [pikerView show];
 }
+
 -(void)setupSexView{
-     _sexPikerView= [ZSexView instanceDatePickerView];
-    _sexPikerView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 20);
-    [_sexPikerView setBackgroundColor:[UIColor clearColor]];
-    _sexPikerView.delegate = self;
-    [self.view addSubview:_sexPikerView];
+    ZDateView *weightPikerView = [[ZDateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withDataArray:@[@"选择性别",@"男",@"女",@"保密"]];
+    [self.view addSubview:weightPikerView];
+    weightPikerView.messageBlock = ^(NSInteger index)
+    {
+        /**
+         *  写选择后的方法
+         */
+    };
+    [weightPikerView show];
 }
 
 - (void)getSelectDate:(NSString *)date {

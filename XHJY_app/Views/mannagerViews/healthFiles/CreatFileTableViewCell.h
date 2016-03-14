@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (nonatomic,retain)UILabel *messageLabel;
 @end

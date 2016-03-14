@@ -8,10 +8,15 @@
 
 #import "PersonInfoViewController.h"
 #import "EWMViewController.h"
+#import "ZZDatePickerView.h"
+#import "ZDateView.h"
+#import "ZHightView.h"
+#import "CreatFileTableViewCell.h"
 
-@interface PersonInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface PersonInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+
 @property(nonatomic,copy)UIButton *setImageBtn;
-@property(nonatomic,copy)UIScrollView *mainView;
+@property(nonatomic,copy)UITableView *mainView;
 @property(nonatomic,copy)NSArray *array;
 @property(nonatomic,copy)UIView *midView;
 @property (nonatomic,copy)UIButton *nextBtn;
@@ -51,12 +56,14 @@
         self.midView.userInteractionEnabled = YES;
         self.editing = YES;
         [self.rightBtn setTitle:@"完成" forState:UIControlStateNormal];
+        self.mainView.allowsSelection = YES;
     }
     else
     {
         self.midView.userInteractionEnabled = NO;
         self.editing = NO;
         [self.rightBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        self.mainView.allowsSelection = NO;
     }
     
 }
@@ -133,37 +140,20 @@
 }
 
 
-- (UIScrollView *)mainView
+- (UITableView *)mainView
 {
     if (!_mainView) {
         
-        _mainView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64 + 100 + 50 + 40, SCREEN_WIDTH, SCREEN_HEIGHT - (64 + 100 + 50 + 40))];
+        _mainView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64 + 100 + 50 + 40, SCREEN_WIDTH, SCREEN_HEIGHT - (64 + 100 + 50 + 40))];
         _mainView.backgroundColor = [UIColor whiteColor];
+        _mainView.delegate = self;
+        _mainView.dataSource = self;
+        _mainView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _mainView.rowHeight = 80;
+        _mainView.allowsSelection = NO;
+        [_mainView registerNib:[UINib nibWithNibName:@"CreatFileTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CreatFileTableViewCell"];
         [self.view addSubview:_mainView];
         
-        for (int i = 0; i < 6; i++) {
-            
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 20 + 75 * i, 100, 15)];
-            label.textColor = [UIColor grayColor];
-            label.text = self.array[i];
-            label.textAlignment = NSTextAlignmentLeft;
-            label.font = [UIFont systemFontOfSize:16];
-            [_mainView addSubview:label];
-            
-            UITextField *textfield = [[UITextField alloc]initWithFrame:CGRectMake(30, 20 + 15 + 15 + 75 * i, 100, 15)];
-            textfield.textAlignment = NSTextAlignmentLeft;
-            textfield.textColor = [UIColor blackColor];
-            textfield.tag = 30 + i;
-            textfield.text = @"Arron";
-            [textfield setBorderStyle:UITextBorderStyleNone];
-            [_mainView addSubview:textfield];
-            
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 74  + 75 * i, SCREEN_WIDTH, 1)];
-            view.backgroundColor = [Tools colorWithHexString:[Singleton sharedInstance].lineColor withAlpha:1];
-            [_mainView addSubview:view];
-            
-        }
-        _mainView.contentSize = CGSizeMake(SCREEN_WIDTH, 6 * 80);
     }
     
     return _mainView;
@@ -173,6 +163,138 @@
 {
     UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"选择头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从相册选取", nil];
     [sheet showInView:self.view];
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"CreatFileTableViewCell";
+    CreatFileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[CreatFileTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    cell.typeLabel.text = self.array[indexPath.row];
+    if (indexPath.row == 0) {
+        
+        cell.messageLabel.hidden = YES;
+    }
+    else
+    {
+        cell.messageTextField.hidden = YES;
+    }
+    
+    return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+   
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.editing == YES) {
+        
+        if (indexPath.row == 0) {
+            
+            CreatFileTableViewCell *cell = [self.mainView cellForRowAtIndexPath:indexPath];
+            [cell.messageTextField becomeFirstResponder];
+        }
+        
+        if (indexPath.row==2) {
+            [self setupDateView];
+        }else if(indexPath.row==4){
+            [self setupWeightView];
+        }else if(indexPath.row==3){
+            [self setupHightView];
+        }else if(indexPath.row==1   ){
+            [self setupSexView];
+            
+        }
+
+    }
+    else
+    {
+        
+    }
+    
+}
+-(void)setupDateView{
+    
+    ZZDatePickerView *pikerView = [[ZZDatePickerView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTime:[NSDate date]];
+    pikerView.calendarBlock = ^(NSInteger age)
+    {
+        NSLog(@"%ld",age);
+    };
+    [self.view addSubview:pikerView];
+    [pikerView show];
+    
+}
+
+-(void)setupWeightView{
+
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 150; i++) {
+        [array addObject:[[NSString alloc]initWithFormat:@"%dKg",i]];
+    }
+    
+    ZHightView  *pikerView = [[ZHightView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTitle:@"设置体重" withDataSource:array];
+    
+    pikerView.calendarBlock = ^(NSInteger message)
+    {
+        NSLog(@"%ld",message);
+    };
+    [self.view addSubview:pikerView];
+    [pikerView show];
+    
+}
+-(void)setupHightView{
+
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 150; i++) {
+        [array addObject:[[NSString alloc]initWithFormat:@"%dcm",i]];
+    }
+    
+    ZHightView  *pikerView = [[ZHightView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withTitle:@"设置身高" withDataSource:array];
+    
+    pikerView.calendarBlock = ^(NSInteger message)
+    {
+        NSLog(@"%ld",message);
+    };
+    [self.view addSubview:pikerView];
+    [pikerView show];
+}
+
+/**
+ *  显示性别
+ */
+-(void)setupSexView{
+    
+   ZDateView *weightPikerView = [[ZDateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withDataArray:@[@"选择性别",@"男",@"女",@"保密"]];
+    [self.view addSubview:weightPikerView];
+    weightPikerView.messageBlock = ^(NSInteger index)
+    {
+        
+    };
+    [weightPikerView show];
+
+}
+
+/**
+ *  显示血型
+ */
+- (void)setupBloodTypeView
+{
+    ZDateView *weightPikerView = [[ZDateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) withDataArray:@[@"选择血型",@"A",@"B",@"C"]];
+    [self.view addSubview:weightPikerView];
+    weightPikerView.messageBlock = ^(NSInteger index)
+    {
+        
+    };
+    [weightPikerView show];
 }
 
 #pragma mark--------------UIActionsheetDelegate

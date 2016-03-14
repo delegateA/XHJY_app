@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ZDatePickerViewDelegate <NSObject>
 
--(void)getSelectWeight:(NSString *)weight;
-
-@end
 
 @interface ZDateView : UIView
-+(ZDateView*)instanceDatePickerView;
-@property (weak, nonatomic) IBOutlet UIPickerView *DrugClass;
-- (IBAction)cannelBtn:(UIButton *)sender;
-- (IBAction)sureBtn:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIView *backgView;
-@property(nonatomic,weak)id<ZDatePickerViewDelegate>delegate;
+/**
+ *  返回的id
+ */
+@property (nonatomic, copy) void(^messageBlock)(NSInteger age);
+- (id)initWithFrame:(CGRect)frame withDataArray:(NSArray *)array;
+- (void)show;
+- (void)hidden;
 @end
