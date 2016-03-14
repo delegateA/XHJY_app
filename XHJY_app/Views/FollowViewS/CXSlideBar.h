@@ -13,7 +13,7 @@
 @interface CXSlideBar : UIView
 
 @property (weak, nonatomic) id<CXSlideBarDelegate> delegate;
-
+@property(nonatomic,strong)UIViewController *AddVC;
 -(instancetype)initWithFrame:(CGRect)frame;
 
 +(instancetype)initWithFrame:(CGRect)frame Array:(NSArray*)array;

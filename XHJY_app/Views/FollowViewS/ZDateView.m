@@ -6,27 +6,25 @@
 //  Copyright © 2016年 LiangXiaobin. All rights reserved.
 //
 
-#import "ZZHDateView.h"
+#import "ZDateView.h"
 #import "UIColor+HexString.h"
 
-@interface ZZHDateView ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface ZDateView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property (nonatomic, strong) NSString *selectDate;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleButton;
 
 @property (strong, nonatomic) NSDictionary *pickerDic;
 @property (strong, nonatomic) NSArray *provinceArray;
-@property (strong, nonatomic) NSArray *cityArray;
-@property (strong, nonatomic) NSArray *townArray;
 @property (strong, nonatomic) NSArray *selectedArray;
 @property (strong, nonatomic) NSString *sureStr;
 
 @end
 
-@implementation ZZHDateView
+@implementation ZDateView
 
-+(ZZHDateView *)instanceDatePickerView{
-    NSArray *nibView=[[NSBundle mainBundle]loadNibNamed:@"ZZHDateView" owner:nil options:nil];
++(ZDateView *)instanceDatePickerView{
+    NSArray *nibView=[[NSBundle mainBundle]loadNibNamed:@"ZDateView" owner:nil options:nil];
     return [nibView objectAtIndex:0];
 }
 
@@ -45,12 +43,11 @@
     // 开始动画
     [self animationbegin:sender];
     NSString *str1=[self.provinceArray objectAtIndex:[self.DrugClass selectedRowInComponent:0]];
-    NSString *str2=[self.cityArray objectAtIndex:[self.DrugClass selectedRowInComponent:1]];
-    NSString *str3=[self.townArray objectAtIndex:[self.DrugClass selectedRowInComponent:2]];
-    self.sureStr=[NSString stringWithFormat:@"%@ %@ %@;",str1,str2,str3];
+   
+    self.sureStr=[NSString stringWithFormat:@"%@",str1];
     
     //delegate
-    [self.delegate getSelectDate:self.sureStr];
+    [self.delegate getSelectWeight:self.sureStr];
     
     
     [self cannelBtn:nil];
@@ -103,74 +100,34 @@
 
 //选择器
 - (void)getPickerData {
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Address" ofType:@"plist"];
-    self.pickerDic = [[NSDictionary alloc] initWithContentsOfFile:path];
-    self.provinceArray = [self.pickerDic allKeys];
-    self.selectedArray = [self.pickerDic objectForKey:[[self.pickerDic allKeys] objectAtIndex:0]];
-    
-    if (self.selectedArray.count > 0) {
-        self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
+    NSMutableArray *arr=[NSMutableArray new];
+    for (int i=0; i<150; i++) {
+        NSString *str=[NSString stringWithFormat:@"%d kg",10+i];
+        [arr addObject:str];
     }
-    
-    if (self.cityArray.count > 0) {
-        self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
-    }
-    NSLog(@"------%ld",self.provinceArray.count);
+    self.provinceArray =[arr copy];
     
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 3;
+    return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component == 0) {
+ 
         return self.provinceArray.count;
-    } else if (component == 1) {
-        return self.cityArray.count;
-    } else {
-        return self.townArray.count;
-    }
+    
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (component == 0) {
+  
         return [self.provinceArray objectAtIndex:row];
-    } else if (component == 1) {
-        return [self.cityArray objectAtIndex:row];
-    } else {
-        return [self.townArray objectAtIndex:row];
-    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (component == 0) {
+  
         self.selectedArray = [self.pickerDic objectForKey:[self.provinceArray objectAtIndex:row]];
-        if (self.selectedArray.count > 0) {
-            self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
-        } else {
-            self.cityArray = nil;
-        }
-        if (self.cityArray.count > 0) {
-            self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
-        } else {
-            self.townArray = nil;
-        }
-    }
-    [pickerView selectedRowInComponent:1];
-    [pickerView reloadComponent:1];
-    [pickerView selectedRowInComponent:2];
-    
-    if (component == 1) {
-        if (self.selectedArray.count > 0 && self.cityArray.count > 0) {
-            self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:row]];
-        } else {
-            self.townArray = nil;
-        }
-        [pickerView selectRow:1 inComponent:2 animated:YES];
-    }
-    
-    [pickerView reloadComponent:2];
+   
+   
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     if (component == 0) {

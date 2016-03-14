@@ -70,13 +70,17 @@
 -(CXSlideBar *)slideBar{
     if (!_slideBar) {
         _slideBar=[CXSlideBar initWithFrame:CGRectMake(0, 20,SCREEN_WIDTH, 95) Array:_arrPerson];
+        _slideBar.delegate=self;
+        _slideBar.AddVC=self;
     }
     return _slideBar;
 
 }
 -(void)slideBarTouch:(CXSlideBar *)slideBar atIndex:(NSInteger)index{
     NSLog(@"%ld",(long)index);
-
+    if (index==0) {
+        [self.navigationController pushViewController:[FocusOnViewController new] animated:YES];
+    }
 }
 
 
