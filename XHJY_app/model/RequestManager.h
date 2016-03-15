@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
-
+#import "Base64CodeManager.h"
 @class AFNetworkReachabilityManager;
 
 typedef void(^CommonBlockCompletion)(id obj);

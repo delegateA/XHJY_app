@@ -19,5 +19,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <MagicalRecord/MagicalRecord.h>
+#import "RequestManager.h"
 #endif
 #endif /* XHJY_app_pch */

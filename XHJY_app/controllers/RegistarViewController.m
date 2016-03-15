@@ -9,6 +9,8 @@
 #import "RegistarViewController.h"
 #import <MBProgressHUD.h>
 #import "InformationViewController.h"
+#import "SSKeychain.h"
+#import "Sha1Manager.h"
 @interface RegistarViewController ()
 
 
@@ -16,23 +18,32 @@
 @property(assign,nonatomic)NSInteger timeCount;
 @property(strong,nonatomic)NSTimer *timer;
 @property(copy,nonatomic)NSString *smsId;
+
+@property (weak, nonatomic) IBOutlet UILabel *changeLabel;
+
+
 @end
 
 @implementation RegistarViewController
 
 #pragma mark 此处根据属性isRegister来确定是注册还是修改密码
 -(void)viewWillAppear:(BOOL)animated{
+    
     if (self.isRegister==YES) {
         self.Password.placeholder=@"我是密码";
+        self.changeLabel.text = @"注册";
+       
     }else{
-    self.Password.placeholder=@"我是新密码";
+        
+        self.Password.placeholder=@"我是新密码";
+        self.changeLabel.text = @"忘记密码";
     }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //self.view.backgroundColor=[UIColor orangeColor];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.PhoneNum addTarget:self action:@selector(changeUser) forControlEvents:UIControlEventEditingChanged];
     [self.Password addTarget:self action:@selector(changeAction) forControlEvents:UIControlEventEditingChanged];
     [self.Identifier addTarget:self action:@selector(changeIdent) forControlEvents:UIControlEventEditingChanged];
@@ -126,18 +137,42 @@
         [hud hide:YES afterDelay:2];
         return;
     }
-    _oUserPhoneNum =self.PhoneNum.text;
+    _oUserPhoneNum = self.PhoneNum.text;
+    
+    [[NSUserDefaults standardUserDefaults]setObject:_oUserPhoneNum forKey:@"account"];
+    
     sender.userInteractionEnabled = NO;
     self.timeCount = 60;
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(reduceTime:) userInfo:sender repeats:YES];
-   // [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:_oUserPhoneNum zone:@"86" customIdentifier:nil result:^(NSError *error) {
-      //  if (!(error)) {
-       //     NSLog(@"获取成功");
-        //}else{
-       //     NSLog(@"获取失败");
-      //  }
-    //}];
     
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setObject:_oUserPhoneNum forKey:@"phone"];
+    
+    
+    if (self.isRegister==YES) {
+        
+        [dic setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+        
+        [[RequestManager sharedInstance]post:[Singleton sharedInstance].verificationCodeUrl params:dic onCompletion:^(id obj) {
+            
+            
+        } onError:^(NSString *error) {
+            
+        }];
+
+    }
+    else
+    {
+        [dic setObject:[NSNumber numberWithInt:1] forKey:@"type"];
+        
+        [[RequestManager sharedInstance]post:[Singleton sharedInstance].verificationCodeUrl params:dic onCompletion:^(id obj) {
+            
+            NSLog(@"%@",obj);
+            
+        } onError:^(NSString *error) {
+            NSLog(@"%@",error);
+        }];
+    }
     
 }
 -(void)reduceTime:(NSTimer *)codeTimer{
@@ -161,60 +196,6 @@
     [self.PhoneNum resignFirstResponder];
 }
 
--(void)next{
-    NSLog(@"!!!!");
-    
-    if ([self.PhoneNum.text isEqualToString:@""])
-    {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"亲，请输入注册手机号码";
-        hud.margin = 10.f;
-        hud.yOffset = -30.f;
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:2];
-        return;
-    }
-    else if (self.PhoneNum.text.length <11)
-    {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"您输入的手机号码格式不正确";
-        hud.margin = 10.f;
-        hud.yOffset = -30.f;
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:2];
-        return;
-    }
-    else if ([self.Password.text isEqualToString:@""])
-    {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"亲，请输入密码";
-        hud.margin = 10.f;
-        hud.yOffset = -30.f;
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:2];
-        
-        return;
-    }else if ([self.Identifier.text isEqualToString:@""]){
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"亲，请输入验证码";
-        hud.margin = 10.f;
-        hud.yOffset = -30.f;
-        hud.removeFromSuperViewOnHide = YES;
-        [hud hide:YES afterDelay:2];
-        
-        return;
-    }else{
-        NSLog(@"我都填写了++++++++++");
-        
-        
-    }
-    
-}
 
 - (IBAction)Register:(UIButton *)sender {
     if ([self.PhoneNum.text isEqualToString:@""])
@@ -265,8 +246,40 @@
         if (self.block) {
             self.block(arr);
         }
-        //[self.navigationController popViewControllerAnimated:YES];
-        [self.navigationController pushViewController:[InformationViewController new] animated:YES];    }
+     
+        [SSKeychain setPassword:self.Password.text forService:[Singleton sharedInstance].appName account:[[NSUserDefaults standardUserDefaults] objectForKey:@"account"]];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc]init];
+        [dic setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"account"] forKey:@"phone"];
+        [dic setObject:[Sha1Manager sha1StringFrom:self.Password.text] forKey:@"pwd"];
+        [dic setObject:self.Identifier.text forKey:@"smsCode"];
+        
+    
+         if (self.isRegister==YES) {
+        
+            [[RequestManager sharedInstance]post:[Singleton sharedInstance].creat params:dic onCompletion:^(id obj) {
+                [hud hide:YES];
+                [self.navigationController pushViewController:[InformationViewController new] animated:YES];
+                
+            } onError:^(NSString *error) {
+                
+                  [hud hide:YES];
+                
+            }];
+         }
+        else
+        {
+            [[RequestManager sharedInstance]post:[Singleton sharedInstance].forgotPassword params:dic onCompletion:^(id obj) {
+                
+                [self.navigationController pushViewController:[InformationViewController new] animated:YES];
+                
+            } onError:^(NSString *error) {
+                
+                NSLog(@"%@",error)
+            }];
+        }
+    }
 }
 
 - (IBAction)BackLogin:(UIButton *)sender {

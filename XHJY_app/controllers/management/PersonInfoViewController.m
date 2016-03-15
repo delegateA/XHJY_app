@@ -12,6 +12,7 @@
 #import "ZDateView.h"
 #import "ZHightView.h"
 #import "CreatFileTableViewCell.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface PersonInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -332,15 +333,54 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [dic setObject:[Singleton sharedInstance].mainColor forKey:@"userid"];
+        
+        
+        NSData *_data = UIImageJPEGRepresentation(image, 1.0f);
+        NSString *_encodedImageStr = [_data base64EncodedStringWithOptions:0];
+        [dic setObject:_encodedImageStr forKey:@"avatar"];
+        
+        
+        Byte *bytes = (Byte *)[_data bytes];
+        NSString *hexStr= @"";
+        for(int i=0;i<[_data length];i++)
+        {
+            NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff]; ///16进制数
+            if([newHexStr length]==1)
+            {
+                hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+            }
+            else
+            {
+                hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+            }
+        }
+        NSLog(@"bytes 的16进制数为:%@",hexStr);
+        
+        [dic setObject:hexStr forKey:@"avatarChecksum"];
+        
+         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        
+        [[RequestManager sharedInstance]post:[NSString stringWithFormat:@"%@%@",[Singleton sharedInstance].baseUrl,[Singleton sharedInstance].upLoadImage] params:dic onCompletion:^(id obj) {
+            NSLog(@"%@",obj);
+            [hud hide:YES];
+        } onError:^(NSString *error) {
+            NSLog(@"%@",error)
+             [hud hide:YES];
+        }];
+        
+        
+        
         [self.setImageBtn setImage:image forState:UIControlStateNormal];
         // 保存图像
         // 1. 取图像路径
-        NSArray *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *imagePath = [docs[0]stringByAppendingPathComponent:@"abc.png"];
-        
-        // 2. 转换成NSData保存
-        NSData *imageData = UIImagePNGRepresentation(image);
-        [imageData writeToFile:imagePath atomically:YES];
+//        NSArray *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *imagePath = [docs[0]stringByAppendingPathComponent:@"abc.png"];
+//        
+//        // 2. 转换成NSData保存
+//        NSData *imageData = UIImagePNGRepresentation(image);
+//        [imageData writeToFile:imagePath atomically:YES];
     });
     
     

@@ -7,6 +7,9 @@
 //
 
 #import "RequestManager.h"
+#import "SSKeychain.h"
+#import "Sha1Manager.h"
+
 @implementation RequestManager
 SHARED_SERVICE(RequestManager)
 - (id)init
@@ -24,7 +27,26 @@ SHARED_SERVICE(RequestManager)
         AFHTTPResponseSerializer * responseSerializer = [AFHTTPResponseSerializer serializer];
         responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/json",@"text/javascript",@"text/plain", nil];
         _manager.responseSerializer = responseSerializer;
-        //        _manager.operationQueue.maxConcurrentOperationCount = 4;  //最大请求数
+        _manager.operationQueue.maxConcurrentOperationCount = 4;  //最大请求数
+        
+        NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"account"];
+        NSString *passordA = [SSKeychain passwordForService:[Singleton sharedInstance].appName account:account];
+        NSString *passordB = [Sha1Manager sha1StringFrom:passordA];
+        NSLog(@"%@",passordA);
+        NSString *mesage  = [[NSString alloc]init];
+        if (passordB.length == 0||passordB == nil||!passordB) {
+            
+            mesage = [NSString stringWithFormat:@"%@:%@:%@",account,passordB,[Singleton sharedInstance].appName];
+        }
+        else
+        {
+           mesage = [NSString stringWithFormat:@"%@:%@:%@",account,passordB,[Singleton sharedInstance].appName];
+        }
+        NSString *header = [Base64CodeManager base64StringFromText:mesage];
+        NSString *headera = [NSString stringWithFormat:@"Basic %@",header];
+        
+        [_manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic %@", header] forHTTPHeaderField:@"Authorization"];
+    
     }
     return self;
 }
@@ -100,18 +122,18 @@ SHARED_SERVICE(RequestManager)
 onCompletion:(CommonBlockCompletion)completionCallback
      onError:(CommonBlockError)errorCallback{
     
-    //访问接口先检查网络
-    if (![RequestManager isNetworkReachable]) {
+     //访问接口先检查网络
+    if ([RequestManager isNetworkReachable]) {
         
         errorCallback(@"网络连接中断，请检查网络");
         return;
     }
     
     BlockWeakSelf(self);
-    [_manager.requestSerializer setValue:@"iOS" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [self.manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.manager POST:[NSString stringWithFormat:@"%@%@",[Singleton sharedInstance].baseUrl,url] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",task);
         //响应处理
         [weakSelf handleCallback:responseObject onCompletion:completionCallback onFail:errorCallback];
         
@@ -129,15 +151,14 @@ onCompletion:(CommonBlockCompletion)completionCallback
 onCompletion:(CommonBlockCompletion)completionCallback
     onError:(CommonBlockError)errorCallback{
     //访问接口先检查网络
-    if (![RequestManager isNetworkReachable]) {
+    if ([RequestManager isNetworkReachable]) {
         
         errorCallback(@"网络连接中断，请检查网络");
         return;
     }
     
     BlockWeakSelf(self);
-    [_manager.requestSerializer setValue:@"iOS" forHTTPHeaderField:@"DEVICE_TYPE"];
-    [self.manager GET:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.manager GET:[NSString stringWithFormat:@"%@%@",[Singleton sharedInstance].baseUrl,url] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //响应处理
@@ -154,7 +175,7 @@ onCompletion:(CommonBlockCompletion)completionCallback
 - (void)downLoad:(NSString *)url params:(NSDictionary *)params onCompletion:(CommonBlockDownload)downloadCallback onError:(CommonBlockError)errorCallback withProgress:(CommonBlockProgress)progressCallback
 {
     //访问接口先检查网络
-    if (![RequestManager isNetworkReachable]) {
+    if ([RequestManager isNetworkReachable]) {
         errorCallback(@"网络连接中断，请检查网络");
         return;
     }
@@ -181,7 +202,7 @@ onCompletion:(CommonBlockCompletion)completionCallback
 - (void)upLoad:(NSString *)url params:(NSDictionary *)params path:(NSString *)path onCompletion:(CommonBlockUpload)uploadCallback onError:(CommonBlockError)errorCallback withProgress:(CommonBlockProgress)progressCallback
 {
     //访问接口先检查网络
-    if (![RequestManager isNetworkReachable]) {
+    if ([RequestManager isNetworkReachable]) {
         errorCallback(@"网络连接中断，请检查网络");
         return;
     }

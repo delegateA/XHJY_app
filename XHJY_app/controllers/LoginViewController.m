@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "RegistarViewController.h"
+#import "Sha1Manager.h"
 @interface LoginViewController ()
 
 @end
@@ -82,6 +83,7 @@
 - (IBAction)Forget:(UIButton *)sender {
     RegistarViewController *regist=[[RegistarViewController alloc]init];
     regist.isRegister=NO;
+    
     [self.navigationController pushViewController:regist animated:YES];
 }
 
@@ -119,12 +121,22 @@
         [hud hide:YES afterDelay:2];
         return;
     }else{
-        NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:self.Account.text,@"userName",self.Password.text,@"passWord", nil];
-        NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:dict forKey:@"Message"];
-        [userDefaults synchronize];
+
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         
-        [self.navigationController popViewControllerAnimated:YES];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [dic setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"account"] forKey:@"login"];
+        [dic setObject:[Sha1Manager sha1StringFrom:self.Password.text] forKey:@"pwd"];
+        
+        [[RequestManager sharedInstance]post:[Singleton sharedInstance].login params:dic onCompletion:^(id obj) {
+            [hud hide:YES];
+            [Singleton sharedInstance].isLogin = YES;
+            [Singleton sharedInstance].userId = [[obj objectForKey:@"targetInfo"] objectForKey:@"userId"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } onError:^(NSString *error) {
+             [hud hide:YES];
+        }];
     }
 }
 - (IBAction)Registar:(UIButton *)sender {

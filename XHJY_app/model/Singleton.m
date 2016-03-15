@@ -15,8 +15,17 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[Singleton alloc] init];
+        _sharedInstance.isLogin = NO;
+        _sharedInstance.userId = [[NSString alloc]init];
         _sharedInstance.mainColor = @"#00D9C4";
         _sharedInstance.lineColor = @"#F5F5F5";
+        _sharedInstance.appName = @"HEALTH";
+        _sharedInstance.baseUrl = @"http://192.168.2.50:9000/health_app_v2/";
+        _sharedInstance.verificationCodeUrl = @"platform/app/user/sendSms";
+        _sharedInstance.creat = @"platform/app/user/create";
+        _sharedInstance.login = @"platform/app/user/login/v2";
+        _sharedInstance.forgotPassword = @"platform/app/user/getPwdBySms";
+        _sharedInstance.upLoadImage = @"platform/app/user/update/avatar";
         
     });
     

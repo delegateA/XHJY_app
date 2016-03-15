@@ -15,18 +15,18 @@
     UIView *_lineView;
     tabBarButton *_pastBtn;
 }
+
 @end
 @implementation TabBarController
 //登录注册页面
 -(void)viewWillAppear:(BOOL)animated{
-    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    NSDictionary *dic=[defaults objectForKey:@"Message"];
-    
-    if (dic!=nil) {
+
+    if ([Singleton sharedInstance].isLogin == NO) {
         LoginViewController *login=[[LoginViewController alloc]init];
         [self.navigationController pushViewController:login animated:NO];
     }
-}- (void)viewDidLoad {
+}
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     

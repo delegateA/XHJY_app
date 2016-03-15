@@ -116,6 +116,8 @@
 		484FEB5A1C92BF4C00F35983 /* icon-_drop_left_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 484FEB561C92BF4C00F35983 /* icon-_drop_left_press@2x.png */; };
 		484FEB5B1C92BF4C00F35983 /* icon-_drop_left_press@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 484FEB571C92BF4C00F35983 /* icon-_drop_left_press@3x.png */; };
 		484FEB6B1C968C0A00F35983 /* ZDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 484FEB691C968C0A00F35983 /* ZDateView.m */; };
+		484FEB701C97A43300F35983 /* Base64CodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 484FEB6F1C97A43300F35983 /* Base64CodeManager.m */; };
+		487F5F9D1C97C4720054049C /* Sha1Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 487F5F9C1C97C4720054049C /* Sha1Manager.m */; };
 		4897C1CD1C8EB96800E4D18B /* btn_left_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4897C1C51C8EB96800E4D18B /* btn_left_normal@2x.png */; };
 		4897C1CE1C8EB96800E4D18B /* btn_left_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4897C1C61C8EB96800E4D18B /* btn_left_normal@3x.png */; };
 		4897C1CF1C8EB96800E4D18B /* btn_left_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4897C1C71C8EB96800E4D18B /* btn_left_press@2x.png */; };
@@ -510,6 +512,10 @@
 		484FEB571C92BF4C00F35983 /* icon-_drop_left_press@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-_drop_left_press@3x.png"; sourceTree = "<group>"; };
 		484FEB681C968C0A00F35983 /* ZDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDateView.h; sourceTree = "<group>"; };
 		484FEB691C968C0A00F35983 /* ZDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDateView.m; sourceTree = "<group>"; };
+		484FEB6E1C97A43300F35983 /* Base64CodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64CodeManager.h; sourceTree = "<group>"; };
+		484FEB6F1C97A43300F35983 /* Base64CodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64CodeManager.m; sourceTree = "<group>"; };
+		487F5F9B1C97C4720054049C /* Sha1Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sha1Manager.h; sourceTree = "<group>"; };
+		487F5F9C1C97C4720054049C /* Sha1Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sha1Manager.m; sourceTree = "<group>"; };
 		4897C1C51C8EB96800E4D18B /* btn_left_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_left_normal@2x.png"; sourceTree = "<group>"; };
 		4897C1C61C8EB96800E4D18B /* btn_left_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_left_normal@3x.png"; sourceTree = "<group>"; };
 		4897C1C71C8EB96800E4D18B /* btn_left_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_left_press@2x.png"; sourceTree = "<group>"; };
@@ -1024,6 +1030,10 @@
 		484779721C83EB990060B3C9 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				487F5F9B1C97C4720054049C /* Sha1Manager.h */,
+				487F5F9C1C97C4720054049C /* Sha1Manager.m */,
+				484FEB6E1C97A43300F35983 /* Base64CodeManager.h */,
+				484FEB6F1C97A43300F35983 /* Base64CodeManager.m */,
 				0B980CF11C91856800807DE4 /* Model.xcdatamodel */,
 				0B980CEB1C91854500807DE4 /* PlanData+CoreDataProperties.h */,
 				0B980CEC1C91854500807DE4 /* PlanData+CoreDataProperties.m */,
@@ -1835,6 +1845,7 @@
 				0B980CE21C91848B00807DE4 /* ClassTableViewCell.m in Sources */,
 				0B923C141C966C62001D07E5 /* ZHightView.m in Sources */,
 				48BEC1581C867B11000EFEBD /* EquipmentMessageTableViewCell.m in Sources */,
+				487F5F9D1C97C4720054049C /* Sha1Manager.m in Sources */,
 				4897C2471C902E8C00E4D18B /* BarView.m in Sources */,
 				48BEC1331C8588EC000EFEBD /* DCPicScrollView.m in Sources */,
 				0B980D081C91860900807DE4 /* SelectTableViewCell.m in Sources */,
@@ -1899,6 +1910,7 @@
 				48CFE4571C9282F100C5DF6A /* InvitePersonViewController.m in Sources */,
 				48BEC0FA1C853744000EFEBD /* ManagerFilesViewController.m in Sources */,
 				48BEC0CA1C841A83000EFEBD /* ManageBtn.m in Sources */,
+				484FEB701C97A43300F35983 /* Base64CodeManager.m in Sources */,
 				48F858291C86C6E600375321 /* MessageListViewController.m in Sources */,
 				484779891C83F1AC0060B3C9 /* ManagerViewController.m in Sources */,
 				4897C2941C91208400E4D18B /* batteryImageView.m in Sources */,
