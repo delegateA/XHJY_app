@@ -43,8 +43,7 @@ SHARED_SERVICE(RequestManager)
            mesage = [NSString stringWithFormat:@"%@:%@:%@",account,passordB,[Singleton sharedInstance].appName];
         }
         NSString *header = [Base64CodeManager base64StringFromText:mesage];
-        NSString *headera = [NSString stringWithFormat:@"Basic %@",header];
-        
+    
         [_manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic %@", header] forHTTPHeaderField:@"Authorization"];
     
     }
